@@ -133,39 +133,30 @@ const Account = () => {
     }
   };
 
-  const MenuItem = ({ icon: Icon, label, onClick, color = "text-gray-900", badge }) => (
-    <motion.button
-      whileTap={{ scale: 0.98 }}
+  const MenuItem = ({ icon: Icon, label, onClick, color = "text-slate-900", badge }) => (
+    <button
       onClick={onClick}
-      className="w-full flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all group mb-3"
-      style={{ '--hover-border': `${themeColors.brand.teal}30` }}
+      className="w-full flex items-center justify-between py-3.5 px-3 bg-white hover:bg-slate-55 transition-colors duration-150 group"
     >
-      <div className="flex items-center gap-4">
-        <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors`}
+      <div className="flex items-center gap-3.5">
+        <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 bg-slate-50 text-slate-700`}
           style={{
-            backgroundColor: color === 'text-red-500' ? '#FEF2F2' : '#F8FAFC',
-            color: color === 'text-red-500' ? '#EF4444' : 'inherit'
-          }}
-          onMouseEnter={(e) => {
-            if (color !== 'text-red-500') e.currentTarget.style.backgroundColor = `${themeColors.brand.teal}15`;
-          }}
-          onMouseLeave={(e) => {
-            if (color !== 'text-red-500') e.currentTarget.style.backgroundColor = '#F8FAFC';
+            color: color === 'text-red-500' ? '#EF4444' : '#334155'
           }}
         >
-          <Icon className={`w-5 h-5 ${color}`} />
+          <Icon className="w-4.5 h-4.5" />
         </div>
-        <span className={`font-semibold ${color}`}>{label}</span>
+        <span className="text-sm font-semibold text-slate-800 group-hover:text-black transition-colors">{label}</span>
       </div>
       <div className="flex items-center gap-2">
         {badge && (
-          <span className="px-2 py-0.5 bg-red-100 text-red-600 text-[10px] font-bold rounded-full">
+          <span className="px-2 py-0.5 bg-red-100 text-red-600 text-[9px] font-bold rounded-full">
             {badge}
           </span>
         )}
-        <FiChevronRight className="w-5 h-5 text-gray-300 group-hover:text-teal-500 transition-colors" />
+        <FiChevronRight className="w-4 h-4 text-slate-300 group-hover:text-slate-500 transition-colors" />
       </div>
-    </motion.button>
+    </button>
   );
 
   const containerVariants = {
@@ -190,32 +181,8 @@ const Account = () => {
   }
 
   return (
-    <div className="min-h-screen pb-32 relative bg-white">
-      {/* Refined Brand Mesh Gradient Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0"
-          style={{
-            background: `
-              radial-gradient(at 0% 0%, ${themeColors?.brand?.teal || '#347989'}25 0%, transparent 70%),
-              radial-gradient(at 100% 0%, ${themeColors?.brand?.yellow || '#D68F35'}20 0%, transparent 70%),
-              radial-gradient(at 100% 100%, ${themeColors?.brand?.orange || '#BB5F36'}15 0%, transparent 75%),
-              radial-gradient(at 0% 100%, ${themeColors?.brand?.teal || '#347989'}10 0%, transparent 70%),
-              radial-gradient(at 50% 50%, ${themeColors?.brand?.teal || '#347989'}03 0%, transparent 100%),
-              #FFFFFF
-            `
-          }}
-        />
-        {/* Elegant Dot Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `radial-gradient(${themeColors?.brand?.teal || '#347989'} 0.8px, transparent 0.8px)`,
-            backgroundSize: '32px 32px'
-          }}
-        />
-      </div>
-
+    <div className="min-h-screen pb-20 relative bg-[#F8FAFC]">
       <div className="relative z-10">
-        {/* Premium Transparent Header */}
         <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/40 border-b border-black/[0.03] px-5 py-5 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <motion.button
@@ -223,233 +190,196 @@ const Account = () => {
               onClick={() => navigate(-1)}
               className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm border border-black/[0.02]"
             >
-              <FiArrowLeft className="w-5 h-5 text-gray-800" />
+              <FiArrowLeft className="w-5 h-5 text-black" />
             </motion.button>
-            <h1 className="text-xl font-extrabold text-gray-900 tracking-tight">Account</h1>
+            <h1 className="text-xl font-extrabold text-black tracking-tight">Account</h1>
           </div>
-          <NotificationBell />
         </header>
 
         <motion.main
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="px-4 pt-6 max-w-lg mx-auto"
+          className="px-4 pt-4 max-w-lg mx-auto"
         >
-          {/* Elevated Profile Card */}
+          {/* Centered Profile Details (No Card shape, Flat) */}
           <motion.div
             variants={itemVariants}
-            className="bg-white rounded-[28px] p-5 shadow-[0_32px_64px_-16px_rgba(52,121,137,0.15)] mb-8 relative overflow-hidden border border-white"
+            className="py-4 mb-4 flex flex-col items-center text-center bg-white rounded-3xl border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]"
           >
-            {/* Vivid Brand Accents */}
-            <div className="absolute top-0 right-0 w-48 h-48 rounded-full -mr-20 -mt-20 blur-3xl opacity-[0.2]"
-              style={{ backgroundColor: themeColors.brand.yellow }}
-            ></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full -ml-24 -mb-24 blur-3xl opacity-[0.2]"
-              style={{ backgroundColor: themeColors.brand.teal }}
-            ></div>
-
-            <div className="flex items-center gap-4 relative z-10">
-              <div className="relative">
-                <div className="w-20 h-20 rounded-2xl p-1 bg-white shadow-xl rotate-2">
-                  {userProfile.profilePhoto ? (
-                    <img
-                      src={userProfile.profilePhoto}
-                      alt={userProfile.name}
-                      className="w-full h-full rounded-[14px] object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full rounded-[14px] flex items-center justify-center text-white font-black text-2xl"
-                      style={{ background: themeColors.gradient }}>
-                      {getInitials()}
-                    </div>
-                  )}
-                </div>
-                <button
-                  onClick={() => navigate('/user/update-profile')}
-                  className="absolute -bottom-1 -right-1 p-1.5 bg-gray-900 text-white rounded-[8px] border-2 border-white shadow-lg active:scale-95 transition-transform"
-                >
-                  <FiEdit3 className="w-3.5 h-3.5" />
-                </button>
+            {/* Centered Photo with Edit Icon on Top-Right */}
+            <div className="relative mb-2.5">
+              <div className="w-20 h-20 rounded-full p-1 bg-white shadow-sm border border-slate-100 flex items-center justify-center">
+                {userProfile.profilePhoto ? (
+                  <img
+                    src={userProfile.profilePhoto}
+                    alt={userProfile.name}
+                    className="w-full h-full rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full rounded-full flex items-center justify-center text-white font-black text-xl"
+                    style={{ background: 'linear-gradient(135deg, #347989 0%, #BB5F36 100%)' }}>
+                    {getInitials()}
+                  </div>
+                )}
               </div>
+              <button
+                onClick={() => navigate('/user/update-profile')}
+                className="absolute top-0 right-0 p-1 bg-slate-900 text-white rounded-full border-2 border-white shadow-sm hover:bg-[#BB5F36] active:scale-90 transition-all duration-200"
+              >
+                <FiEdit3 className="w-3 h-3" />
+              </button>
+            </div>
 
-              <div className="flex-1 min-w-0">
-                <h2 className="text-xl font-black text-gray-900 truncate mb-1">
-                  {userProfile.name}
-                </h2>
-                <div className="flex items-center gap-2 mb-3">
-                  <p className="text-sm text-gray-500 font-bold uppercase tracking-widest">
-                    {userProfile.phone ? formatPhoneNumber(userProfile.phone) : 'No phone linked'}
-                  </p>
-                </div>
-                <button
-                  onClick={() => navigate('/user/update-profile')}
-                  className="px-4 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-600 text-[10px] font-black uppercase tracking-wider rounded-xl transition-colors"
-                >
-                  Edit Profile
-                </button>
-              </div>
+            {/* Profile Info */}
+            <div className="w-full px-4">
+              <h2 className="text-base font-extrabold text-slate-900 mb-0.5">
+                {userProfile.name}
+              </h2>
+              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+                {userProfile.phone ? formatPhoneNumber(userProfile.phone) : 'No phone linked'}
+              </p>
             </div>
           </motion.div>
 
-          {/* Designer Active Plan Card */}
+          {/* Active membership plan (Clean, Flat card) */}
           {userProfile.plans && userProfile.plans.isActive && (
             <motion.div
               variants={itemVariants}
               onClick={() => navigate('/user/my-plan')}
-              className="relative overflow-hidden mb-6 rounded-[28px] p-6 text-white cursor-pointer group transition-all"
+              className="relative overflow-hidden mb-4 rounded-xl p-4 text-white cursor-pointer group transition-all"
               style={{
                 background: `linear-gradient(135deg, ${themeColors.brand.teal} -10%, ${themeColors.brand.orange} 120%)`,
-                boxShadow: `0 20px 40px -12px ${themeColors.brand.teal}40`
               }}
             >
-              {/* Decorative elements */}
-              <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700"></div>
-              <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-black/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-500"></div>
-
               <div className="relative z-10 flex items-center justify-between">
                 <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <FiShield className="w-4 h-4 text-white/80" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70">Membership Status</span>
+                  <div className="flex items-center gap-1.5 mb-0.5">
+                    <FiShield className="w-3.5 h-3.5 text-white/80" />
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-white/70">Membership Status</span>
                   </div>
-                  <h3 className="text-2xl font-black mb-1">{userProfile.plans.name}</h3>
-                  <div className="flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full w-fit mt-3 border border-white/10">
-                    <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Expires: {new Date(userProfile.plans.expiry).toLocaleDateString()}</span>
-                  </div>
+                  <h3 className="text-base font-black mb-0.5">{userProfile.plans.name}</h3>
+                  <span className="text-[9px] font-semibold opacity-85 uppercase tracking-wide">Expires: {new Date(userProfile.plans.expiry).toLocaleDateString()}</span>
                 </div>
-
-                <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 shadow-inner group-hover:rotate-12 transition-transform duration-500">
-                  <FiZap className="w-8 h-8 fill-white text-white drop-shadow-lg" />
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-center relative z-10">
-                <span className="text-xs font-bold text-white/80">Manage Benefits</span>
-                <FiChevronRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 transition-transform" />
+                <FiChevronRight className="w-4 h-4 opacity-75 group-hover:translate-x-1 transition-transform" />
               </div>
             </motion.div>
           )}
 
-          {/* Quick Actions Grid */}
-          <motion.div variants={itemVariants} className="grid grid-cols-2 gap-3 mb-6">
+          {/* Separate White Balance & Rewards Cards */}
+          <motion.div variants={itemVariants} className="grid grid-cols-2 gap-3 mb-5">
             <button
               onClick={() => navigate('/user/wallet')}
-              className="bg-white p-4 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-left group"
+              className="bg-white p-3 rounded-2xl border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-md transition-all text-left group flex items-center gap-2.5"
             >
-              <div className="w-10 h-10 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"
+              <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform"
                 style={{ backgroundColor: `${themeColors.brand.teal}15`, color: themeColors.brand.teal }}
               >
-                <MdAccountBalanceWallet className="w-5 h-5" />
+                <MdAccountBalanceWallet className="w-4.5 h-4.5" />
               </div>
-              <span className="text-xs text-gray-500 font-bold uppercase tracking-wider">Balance</span>
-              <p className={`text-lg font-black mt-0.5 ${userProfile.walletBalance < 0 ? 'text-red-500' : 'text-gray-900'}`}>
-                ₹{Math.abs(userProfile.walletBalance || 0).toLocaleString('en-IN')}
-                {userProfile.walletBalance < 0 && <span className="text-xs font-normal ml-1">(Penalty)</span>}
-              </p>
+              <div className="min-w-0">
+                <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider block leading-none">Balance</span>
+                <span className="text-xs font-black text-slate-900 mt-1 block leading-none">
+                  ₹{Math.abs(userProfile.walletBalance || 0).toLocaleString('en-IN')}
+                </span>
+              </div>
             </button>
+
             <button
               onClick={() => navigate('/user/rewards')}
-              className="bg-gray-900 p-4 rounded-3xl shadow-lg shadow-gray-200 hover:shadow-xl transition-all text-left relative overflow-hidden group"
+              className="bg-white p-3 rounded-2xl border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-md transition-all text-left group flex items-center gap-2.5"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-black opacity-50"></div>
-              <div className="relative z-10 h-full flex flex-col justify-between">
-                <div className="w-10 h-10 bg-white/10 text-yellow-400 rounded-2xl flex items-center justify-center mb-3 backdrop-blur-sm group-hover:scale-110 transition-transform">
-                  <FiGift className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-xs text-white/60 font-bold uppercase tracking-wider">Rewards</span>
-                  <p className="text-lg font-black text-white mt-0.5">Refer & Earn</p>
-                </div>
+              <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform"
+                style={{ backgroundColor: `${themeColors.brand.orange}15`, color: themeColors.brand.orange }}
+              >
+                <FiGift className="w-4.5 h-4.5" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider block leading-none">Rewards</span>
+                <span className="text-xs font-black text-slate-900 mt-1 block leading-none">Refer & Earn</span>
               </div>
             </button>
           </motion.div>
 
-          {/* Menu Groups */}
-
-          {/* Shopping */}
-          <motion.div variants={itemVariants} className="mb-6">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 pl-2">Shopping</h3>
-            <MenuItem
-              icon={FiShoppingBag}
-              label="Scrap Deals"
-              onClick={() => navigate('/user/scrap')}
-            />
-            <MenuItem
-              icon={FiFileText}
-              label="My Plans"
-              onClick={() => navigate('/user/my-plan')}
-            />
+          {/* Shopping Menu List Card */}
+          <motion.div variants={itemVariants} className="mb-4">
+            <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-1.5 pl-1.5">Shopping</h3>
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm divide-y divide-slate-100 overflow-hidden">
+              <MenuItem
+                icon={FiShoppingBag}
+                label="Scrap Deals"
+                onClick={() => navigate('/user/scrap')}
+              />
+              <MenuItem
+                icon={FiFileText}
+                label="My Plans"
+                onClick={() => navigate('/user/my-plan')}
+              />
+            </div>
           </motion.div>
 
-          {/* Activity */}
-          <motion.div variants={itemVariants} className="mb-6">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 pl-2">Activity</h3>
-            <MenuItem
-              icon={FiClipboard}
-              label="My Bookings"
-              onClick={() => navigate('/user/my-bookings')}
-            />
-            <MenuItem
-              icon={FiStar}
-              label="My Ratings"
-              onClick={() => navigate('/user/my-rating')}
-            />
+          {/* Activity Menu List Card */}
+          <motion.div variants={itemVariants} className="mb-4">
+            <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-1.5 pl-1.5">Activity</h3>
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm divide-y divide-slate-100 overflow-hidden">
+              <MenuItem
+                icon={FiClipboard}
+                label="My Bookings"
+                onClick={() => navigate('/user/my-bookings')}
+              />
+              <MenuItem
+                icon={FiStar}
+                label="My Ratings"
+                onClick={() => navigate('/user/my-rating')}
+              />
+            </div>
           </motion.div>
 
-          {/* Preferences */}
-          <motion.div variants={itemVariants} className="mb-6">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 pl-2">Preferences</h3>
-            <MenuItem
-              icon={FiMapPin}
-              label="Manage Addresses"
-              onClick={() => navigate('/user/manage-addresses')}
-            />
-
-            <MenuItem
-              icon={FiSettings}
-              label="Settings"
-              onClick={() => navigate('/user/settings')}
-            />
+          {/* Preferences Menu List Card */}
+          <motion.div variants={itemVariants} className="mb-4">
+            <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-1.5 pl-1.5">Preferences</h3>
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm divide-y divide-slate-100 overflow-hidden">
+              <MenuItem
+                icon={FiMapPin}
+                label="Manage Addresses"
+                onClick={() => navigate('/user/manage-addresses')}
+              />
+              <MenuItem
+                icon={FiSettings}
+                label="Settings"
+                onClick={() => navigate('/user/settings')}
+              />
+            </div>
           </motion.div>
 
-          {/* Support & Legal */}
-          <motion.div variants={itemVariants} className="mb-8">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 pl-2">Support & More</h3>
-            <MenuItem
-              icon={FiHeadphones}
-              label="Help & Support"
-              onClick={() => navigate('/user/help-support')}
-            />
-            <motion.button
-              whileTap={{ scale: 0.98 }}
-              onClick={() => navigate('/user/about-homestr')}
-              className="w-full flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all group mb-3"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gray-50 transition-colors group-hover:bg-opacity-80">
-                  <Logo className="w-8 h-8" />
-                </div>
-                <span className="font-semibold text-gray-900">About Cleaning Expert Services</span>
-              </div>
-              <FiChevronRight className="w-5 h-5 text-gray-300 group-hover:text-teal-500 transition-colors" />
-            </motion.button>
-            <div className="h-4"></div>
-            <motion.button
-              whileTap={{ scale: 0.98 }}
+          {/* Support & More Menu List Card */}
+          <motion.div variants={itemVariants} className="mb-6">
+            <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-1.5 pl-1.5">Support & More</h3>
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm divide-y divide-slate-100 overflow-hidden mb-4">
+              <MenuItem
+                icon={FiHeadphones}
+                label="Help & Support"
+                onClick={() => navigate('/user/help-support')}
+              />
+              <MenuItem
+                icon={Logo}
+                label="About Cleaning Expert Services"
+                onClick={() => navigate('/user/about-gobee')}
+              />
+            </div>
+
+            <button
               onClick={handleLogout}
-              className="w-full flex items-center justify-center gap-2 p-4 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-black uppercase tracking-wider rounded-2xl shadow-lg shadow-red-200 transition-all mb-3"
+              className="w-full flex items-center justify-center gap-1.5 py-3 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-wider text-xs rounded-xl shadow-sm hover:shadow transition-all duration-150 active:scale-95 mt-2"
             >
-              <FiLogOut className="w-5 h-5" />
+              <FiLogOut className="w-3.5 h-3.5" />
               <span>Log out</span>
-            </motion.button>
+            </button>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="text-center pb-8">
-            <p className="text-xs font-medium text-gray-400">Version 7.6.27 R547</p>
+          <motion.div variants={itemVariants} className="text-center pb-6">
+            <p className="text-[9px] font-semibold text-slate-400">Version 7.6.27 R547</p>
           </motion.div>
-
         </motion.main>
       </div>
     </div>

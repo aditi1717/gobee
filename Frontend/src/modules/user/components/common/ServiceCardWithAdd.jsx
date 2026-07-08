@@ -5,7 +5,7 @@ import { themeColors } from '../../../../theme';
 const ServiceCardWithAdd = memo(({ image, title, rating, reviews, price, onAddClick, onClick }) => {
   return (
     <div
-      className="min-w-[200px] bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-95"
+      className="min-w-[200px] bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-95 flex flex-col group"
       style={{
         boxShadow: themeColors.cardShadow,
         border: themeColors.cardBorder
@@ -13,13 +13,15 @@ const ServiceCardWithAdd = memo(({ image, title, rating, reviews, price, onAddCl
       onClick={onClick}
     >
       {image ? (
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-40 object-cover"
-          loading="lazy"
-          decoding="async"
-        />
+        <div className="w-full h-40 overflow-hidden relative">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       ) : (
         <div className="w-full h-40 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
           <svg
@@ -37,17 +39,18 @@ const ServiceCardWithAdd = memo(({ image, title, rating, reviews, price, onAddCl
           </svg>
         </div>
       )}
-      <div className="p-3">
-        <h3 className="text-xs font-medium text-black leading-tight mb-2">{title}</h3>
-        {rating && (
-          <div className="flex items-center gap-1 mb-2">
-            <AiFillStar className="w-4 h-4 text-yellow-400" />
-            <span className="text-xs text-black font-medium">{rating}</span>
-            {reviews && (
-              <span className="text-xs text-gray-500">({reviews})</span>
-            )}
-          </div>
-        )}
+      <div className="p-3 flex flex-col flex-1">
+        <div className="flex items-start justify-between gap-2 mb-1.5 min-h-[40px]">
+          <h3 className="text-[13px] font-bold text-gray-900 leading-snug line-clamp-2 pr-1 flex-1">
+            {title}
+          </h3>
+          {rating && (
+            <div className="flex items-center gap-0.5 shrink-0 bg-yellow-50/90 px-1.5 py-0.5 rounded-lg border border-yellow-100 shadow-sm mt-0.5">
+              <AiFillStar className="w-3 h-3 text-yellow-500" />
+              <span className="text-[10px] text-gray-950 font-black leading-none">{rating}</span>
+            </div>
+          )}
+        </div>
         <div className="flex items-center justify-between">
           <span
             className="text-base font-bold text-black"

@@ -24,7 +24,7 @@ const LandingPage = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
-  const PLAY_STORE_URL = "https://play.google.com/store/search?q=homestr&c=apps";
+  const PLAY_STORE_URL = "https://play.google.com/store/search?q=go bee&c=apps";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -355,7 +355,7 @@ const LandingPage = () => {
                 <div className="relative w-full max-w-[260px] sm:max-w-[280px] mb-10">
                    <div className="absolute inset-0 bg-brand/20 blur-[80px] rounded-full scale-50 group-hover:scale-100 transition-transform duration-700"></div>
                    <div className="relative z-10 p-2.5 sm:p-4 bg-gray-900 rounded-[2.5rem] sm:rounded-[3rem] border-[4px] sm:border-[8px] border-white shadow-2xl aspect-[9/18.5] overflow-hidden transform group-hover:rotate-1 transition-transform duration-500">
-                      <img src="/homster user.png" alt="Go Bee User App" className="w-full h-full object-cover rounded-2xl brightness-95 group-hover:brightness-100 transition-all duration-500" />
+                      <img src="/gobee user.png" alt="Go Bee User App" className="w-full h-full object-cover rounded-2xl brightness-95 group-hover:brightness-100 transition-all duration-500" />
                       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full"></div>
                    </div>
                 </div>
@@ -374,7 +374,7 @@ const LandingPage = () => {
                 <div className="relative w-full max-w-[260px] sm:max-w-[280px] mb-10">
                    <div className="absolute inset-0 bg-cyan-500/20 blur-[80px] rounded-full scale-50 group-hover:scale-100 transition-transform duration-700"></div>
                    <div className="relative z-10 p-2.5 sm:p-4 bg-gray-900 rounded-[2.5rem] sm:rounded-[3rem] border-[4px] sm:border-[8px] border-white shadow-2xl aspect-[9/18.5] overflow-hidden transform group-hover:-rotate-1 transition-transform duration-500">
-                      <img src="/homster vendor.png" alt="Go Bee Vendor App" className="w-full h-full object-contain bg-gray-50 rounded-2xl brightness-95 group-hover:brightness-100 transition-all duration-500" />
+                      <img src="/gobee vendor.png" alt="Go Bee Vendor App" className="w-full h-full object-contain bg-gray-50 rounded-2xl brightness-95 group-hover:brightness-100 transition-all duration-500" />
                       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full"></div>
                    </div>
                 </div>
@@ -393,7 +393,7 @@ const LandingPage = () => {
                 <div className="relative w-full max-w-[260px] sm:max-w-[280px] mb-10">
                    <div className="absolute inset-0 bg-orange-500/20 blur-[80px] rounded-full scale-50 group-hover:scale-100 transition-transform duration-700"></div>
                    <div className="relative z-10 p-2.5 sm:p-4 bg-gray-900 rounded-[2.5rem] sm:rounded-[3rem] border-[4px] sm:border-[8px] border-white shadow-2xl aspect-[9/18.5] overflow-hidden transform group-hover:rotate-1 transition-transform duration-500">
-                      <img src="/Homster xpert .png" alt="Go Bee Xpert App" className="w-full h-full object-contain bg-gray-50 rounded-2xl brightness-95 group-hover:brightness-100 transition-all duration-500" />
+                      <img src="/gobee xpert .png" alt="Go Bee Xpert App" className="w-full h-full object-contain bg-gray-50 rounded-2xl brightness-95 group-hover:brightness-100 transition-all duration-500" />
                       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full"></div>
                    </div>
                 </div>
@@ -558,7 +558,7 @@ const LandingPage = () => {
             <div className="flex flex-col items-center lg:items-start text-nowrap">
               <h4 className="text-[10px] font-normal text-brand mb-8 sm:mb-10">Contact Support</h4>
               <ul className="space-y-4 sm:space-y-6 text-gray-400 font-normal text-sm">
-                 <li>Email: <a href={`mailto:${settings?.supportEmail || 'support@homestr.in'}`} className="hover:text-white transition-all">{settings?.supportEmail || 'support@homestr.in'}</a></li>
+                 <li>Email: <a href={`mailto:${settings?.supportEmail || 'support@gobee.in'}`} className="hover:text-white transition-all">{settings?.supportEmail || 'support@gobee.in'}</a></li>
                  <li>Phone: <a href={`tel:${settings?.supportPhone || '+919876543210'}`} className="hover:text-white transition-all">{settings?.supportPhone || '+91 98765 43210'}</a></li>
                  <li className="text-[11px] opacity-50">
                     {settings?.companyAddress ? `${settings.companyAddress}, ${settings.companyCity}` : 'Indore, Madhya Pradesh'}

@@ -65,164 +65,156 @@ const UserScrapPage = () => {
 
   // Inside return:
   return (
-    <div className="min-h-screen pb-20 relative bg-white">
-      {/* Refined Brand Mesh Gradient Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0"
-          style={{
-            background: `
-              radial-gradient(at 0% 0%, ${themeColors?.brand?.teal || '#347989'}25 0%, transparent 70%),
-              radial-gradient(at 100% 0%, ${themeColors?.brand?.yellow || '#D68F35'}20 0%, transparent 70%),
-              radial-gradient(at 100% 100%, ${themeColors?.brand?.orange || '#BB5F36'}15 0%, transparent 75%),
-              radial-gradient(at 0% 100%, ${themeColors?.brand?.teal || '#347989'}10 0%, transparent 70%),
-              radial-gradient(at 50% 50%, ${themeColors?.brand?.teal || '#347989'}03 0%, transparent 100%),
-              #FFFFFF
-            `
-          }}
-        />
-        {/* Elegant Dot Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `radial-gradient(${themeColors?.brand?.teal || '#347989'} 0.8px, transparent 0.8px)`,
-            backgroundSize: '32px 32px'
-          }}
-        />
-      </div>
-
+    <div className="min-h-screen pb-24 relative bg-[#F8FAFC]">
       <div className="relative z-10">
-        {/* Modern Glassmorphism Header */}
-        <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/40 border-b border-black/[0.03] px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => navigate(-1)}
-              className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm border border-black/[0.02]"
-            >
-              <FiArrowLeft className="w-5 h-5 text-gray-800" />
-            </button>
-            <div className="flex items-center gap-2">
-              <FiTrash2 className="w-5 h-5" style={{ color: themeColors.button }} />
-              <h1 className="text-xl font-extrabold text-gray-900">Sell Scrap</h1>
-            </div>
-          </div>
-          <NotificationBell />
+        {/* Modern Grayscale Header */}
+        <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/70 border-b border-slate-100 px-4 py-3 flex items-center gap-3 shadow-sm">
+          <button
+            onClick={() => navigate(-1)}
+            className="w-9 h-9 bg-white rounded-xl flex items-center justify-center shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors"
+          >
+            <FiArrowLeft className="w-4 h-4 text-slate-800" />
+          </button>
+          <h1 className="text-lg font-bold text-slate-900 tracking-tight">Sell Scrap</h1>
         </header>
 
-        {/* Tabs */}
-        <div className="flex bg-white border-b border-gray-200 mt-1">
-          <button
-            onClick={() => setActiveTab('active')}
-            className={`flex-1 py-3 text-sm font-medium border-b-2 ${activeTab === 'active'
-              ? `border-[${themeColors.primary}] text-[${themeColors.primary}]`
-              : 'border-transparent text-gray-500'
-              }`}
-            style={{ borderColor: activeTab === 'active' ? themeColors.button : 'transparent', color: activeTab === 'active' ? themeColors.button : undefined }}
-          >
-            Active Listings
-          </button>
-          <button
-            onClick={() => setActiveTab('history')}
-            className={`flex-1 py-3 text-sm font-medium border-b-2 ${activeTab === 'history'
-              ? `border-[${themeColors.primary}] text-[${themeColors.primary}]`
-              : 'border-transparent text-gray-500'
-              }`}
-            style={{ borderColor: activeTab === 'history' ? themeColors.button : 'transparent', color: activeTab === 'history' ? themeColors.button : undefined }}
-          >
-            History
-          </button>
+        {/* Brand Orange Pill-Style Tabs */}
+        <div className="bg-white border-b border-slate-100 sticky top-[53px] z-20 shadow-sm">
+          <div className="flex overflow-x-auto px-4 py-2.5 gap-2 no-scrollbar scroll-smooth">
+            {[
+              { id: 'active', label: 'Active Listings' },
+              { id: 'history', label: 'History' },
+            ].map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 border ${
+                    isActive
+                      ? 'text-white shadow-sm active:scale-95 border-transparent'
+                      : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100 hover:border-slate-300'
+                  }`}
+                  style={isActive ? {
+                    backgroundColor: themeColors.brand?.orange || '#BB5F36',
+                  } : {}}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="p-4 space-y-4">
+        {/* Content List */}
+        <div className="p-4 space-y-3.5 max-w-lg mx-auto">
           {loading ? (
-            <div className="space-y-4">
+            <div className="space-y-3.5">
               {[1, 2, 3].map(i => (
-                <div key={i} className="bg-white rounded-xl shadow-sm p-4 border border-gray-100 animate-pulse">
-                  <div className="flex justify-between items-start mb-3">
-                    <div className="space-y-2">
-                      <div className="h-4 w-20 bg-gray-200 rounded"></div>
-                      <div className="h-5 w-40 bg-gray-200 rounded"></div>
-                      <div className="h-3 w-32 bg-gray-200 rounded"></div>
+                <div key={i} className="bg-white rounded-2xl p-4 border border-slate-150 animate-pulse">
+                  <div className="flex gap-3 mb-3 pb-3 border-b border-slate-100">
+                    <div className="w-16 h-16 bg-slate-200 rounded-xl"></div>
+                    <div className="space-y-2 flex-1">
+                      <div className="h-4 w-28 bg-slate-200 rounded"></div>
+                      <div className="h-3 w-40 bg-slate-200 rounded"></div>
                     </div>
-                    <div className="h-6 w-16 bg-gray-200 rounded"></div>
                   </div>
-                  <div className="pt-3 border-t border-gray-50 flex justify-between">
-                    <div className="h-4 w-24 bg-gray-200 rounded"></div>
-                  </div>
+                  <div className="h-3.5 w-32 bg-slate-200 rounded"></div>
                 </div>
               ))}
             </div>
           ) : (activeTab === 'active' ? activeScraps : historyScraps).length === 0 ? (
-            <div className="text-center py-20">
-              <div className="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <FiPlus className="w-8 h-8 text-gray-400" />
+            <div className="text-center py-20 bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
+              <div className="bg-slate-50 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4 border border-slate-100">
+                <FiTrash2 className="w-6 h-6 text-slate-300" />
               </div>
-              <p className="text-gray-500 font-medium">No items found</p>
-              <p className="text-sm text-gray-400 mt-1">Add items to start selling</p>
+              <p className="text-slate-900 font-bold text-sm">No listings found</p>
+              <p className="text-xs text-slate-400 mt-1">Add items to start selling scrap</p>
             </div>
           ) : (
-            (activeTab === 'active' ? activeScraps : historyScraps).map(item => (
-              <div
-                key={item._id}
-                className="bg-white rounded-[24px] shadow-sm p-4 border border-gray-100 active:scale-[0.98] transition-all cursor-pointer overflow-hidden relative"
-                onClick={() => setSelectedScrap(item)}
-              >
-                <div className="flex gap-4">
-                  {item.images && item.images.length > 0 && (
-                    <div className="w-20 h-20 rounded-2xl overflow-hidden shrink-0 border border-gray-50 bg-gray-50/50">
-                      <img src={item.images[0]} alt={item.title} className="w-full h-full object-cover" />
+            (activeTab === 'active' ? activeScraps : historyScraps).map(item => {
+              const isPending = item.status === 'pending';
+              const isAccepted = item.status === 'accepted';
+              const isCompleted = item.status === 'completed';
+              const isCancelled = item.status === 'cancelled';
+
+              return (
+                <div
+                  key={item._id}
+                  className="bg-white rounded-2xl p-4 border border-slate-100 border-l-4 !border-l-[#BB5F36] shadow-[0_4px_15px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.06)] hover:border-slate-200 active:scale-[0.995] transition-all duration-200 cursor-pointer overflow-hidden relative"
+                  onClick={() => setSelectedScrap(item)}
+                >
+                  <div className="flex gap-3.5 relative z-10">
+                    {item.images && item.images.length > 0 ? (
+                      <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-slate-100 bg-slate-50">
+                        <img src={item.images[0]} alt={item.title} className="w-full h-full object-cover" />
+                      </div>
+                    ) : (
+                      <div className="w-16 h-16 rounded-xl shrink-0 border border-slate-100 bg-slate-50 flex items-center justify-center text-slate-400">
+                        <FiImage className="w-6 h-6" />
+                      </div>
+                    )}
+                    
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-start gap-2">
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-sm font-extrabold text-slate-900 leading-snug truncate">{item.title}</h3>
+                          <p className="text-xs text-slate-500 font-medium mt-1 truncate">{item.description || 'No description provided'}</p>
+                        </div>
+                        
+                        <div className={`shrink-0 px-2 py-0.5 rounded-full border text-[9px] font-extrabold uppercase tracking-wider
+                          ${isPending ? 'bg-orange-50/80 text-[#BB5F36] border-orange-100' : ''}
+                          ${isAccepted ? 'bg-teal-50 text-[#347989] border-teal-100' : ''}
+                          ${isCompleted ? 'bg-slate-100 text-slate-800 border-slate-200' : ''}
+                          ${isCancelled ? 'bg-slate-50 text-slate-400 border-slate-200' : ''}
+                        `}>
+                          {item.status}
+                        </div>
+                      </div>
                     </div>
-                  )}
-                  <div className="flex-1">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="font-extrabold text-gray-900 leading-tight line-clamp-1">{item.title}</h3>
-                        <p className="text-xs font-medium text-gray-500 mt-1 line-clamp-1">{item.description}</p>
-                      </div>
-                      <div className={`px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border
-                        ${item.status === 'pending' ? 'bg-amber-50 text-amber-600 border-amber-100' : ''}
-                        ${item.status === 'accepted' ? 'bg-green-50 text-green-600 border-green-100' : ''}
-                        ${item.status === 'completed' ? 'bg-gray-100 text-gray-600 border-gray-200' : ''}
-                        ${item.status === 'cancelled' ? 'bg-red-50 text-red-600 border-red-100' : ''}
-                      `}>
-                        {item.status}
-                      </div>
-                      {(item.status === 'pending' || item.status === 'cancelled') && (
+                  </div>
+
+                  {/* Details block */}
+                  <div className="mt-3.5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-[10px] font-bold text-slate-400">
+                    <div className="flex items-center gap-1.5">
+                      <FiClock className="w-3.5 h-3.5 text-slate-650" />
+                      <span>Listed {new Date(item.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      {isAccepted && (
+                        <div className="flex items-center gap-1 text-[#347989]">
+                          <FiCheckCircle className="w-3 h-3" />
+                          <span>Pickup Confirmed</span>
+                        </div>
+                      )}
+                      {(isPending || isCancelled) && (
                         <button
                           onClick={(e) => handleDelete(e, item._id)}
-                          className="p-2 ml-2 text-red-500 hover:bg-red-50 rounded-full transition-colors"
+                          className="w-7 h-7 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg flex items-center justify-center shrink-0 transition-colors"
                           title="Delete Listing"
                         >
-                          <FiTrash2 className="w-4 h-4" />
+                          <FiTrash2 className="w-3.5 h-3.5" />
                         </button>
                       )}
                     </div>
                   </div>
                 </div>
-
-                <div className="mt-3 pt-3 border-t border-gray-50 flex items-center justify-between text-[11px] font-bold text-gray-400">
-                  <div className="flex items-center gap-1.5">
-                    <FiClock className="w-3.5 h-3.5" />
-                    <span>Listed on {new Date(item.createdAt).toLocaleDateString()}</span>
-                  </div>
-                  {item.status === 'accepted' && (
-                    <div className="flex items-center gap-1.5 text-green-600">
-                      <FiCheckCircle className="w-3.5 h-3.5" />
-                      <span>Pickup Confirmed</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 
-        {/* FAB */}
+        {/* Floating Action Button (FAB) */}
         <button
           onClick={() => navigate('/user/scrap/add')}
-          className="fixed bottom-24 right-4 w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-white transition-transform active:scale-95"
-          style={{ backgroundColor: themeColors.button }}
+          className="fixed bottom-24 right-4 w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-white transition-transform active:scale-95 z-40"
+          style={{
+            backgroundColor: themeColors.brand?.orange || '#BB5F36',
+            boxShadow: '0 4px 14px rgba(187, 95, 54, 0.4)'
+          }}
         >
-          <FiPlus className="w-7 h-7" />
+          <FiPlus className="w-6 h-6" />
         </button>
 
         {/* Add Modal */}
@@ -237,94 +229,96 @@ const UserScrapPage = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedScrap(null)}
-                className="fixed inset-0 bg-black/60 z-[60] backdrop-blur-md"
+                className="fixed inset-0 bg-black/60 z-[60] backdrop-blur-[2px]"
               />
               <motion.div
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: "100%", opacity: 0 }}
-                transition={{ type: "spring", damping: 30, stiffness: 350 }}
-                className="fixed bottom-20 left-4 right-4 bg-white rounded-[32px] z-[70] max-h-[85vh] overflow-y-auto shadow-2xl border border-gray-100 flex flex-col"
+                transition={{ type: "spring", damping: 28, stiffness: 300 }}
+                className="fixed bottom-24 left-4 right-4 bg-white rounded-2xl z-[70] max-h-[75vh] overflow-hidden shadow-2xl border border-slate-100 flex flex-col max-w-md mx-auto"
                 onClick={e => e.stopPropagation()}
-                style={{
-                  boxShadow: '0 -25px 50px -12px rgba(0,0,0,0.5)'
-                }}
               >
-                {/* Header */}
-                <div className="p-4 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white/80 backdrop-blur-md z-10">
-                  <div className="flex flex-col">
-                    <h2 className="text-xl font-black text-gray-900 leading-tight">{selectedScrap.title}</h2>
-                  </div>
+                {/* Modal Header */}
+                <div className="p-3.5 px-4 border-b border-slate-100 flex justify-between items-center sticky top-0 bg-white/90 backdrop-blur-md z-10">
+                  <h2 className="text-sm font-extrabold text-slate-900 leading-tight">{selectedScrap.title}</h2>
                   <button
                     onClick={() => setSelectedScrap(null)}
-                    className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 active:scale-90 transition-all"
+                    className="w-8 h-8 bg-slate-50 hover:bg-slate-100 text-slate-500 rounded-lg flex items-center justify-center transition-colors"
                   >
-                    <FiX className="w-6 h-6" />
+                    <FiX className="w-4.5 h-4.5" />
                   </button>
                 </div>
 
-                <div className="p-6 space-y-6">
+                <div className="p-4 space-y-3.5 overflow-y-auto max-h-[calc(75vh-110px)]">
                   {/* Images */}
                   {selectedScrap.images && selectedScrap.images.length > 0 && (
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-2">
                       {selectedScrap.images.map((img, i) => (
-                        <div key={i} className={`rounded-3xl overflow-hidden border border-gray-100 ${i === 0 && selectedScrap.images.length % 2 !== 0 ? 'col-span-2 aspect-video' : 'aspect-square'}`}>
+                        <div key={i} className={`rounded-xl overflow-hidden border border-slate-100 bg-slate-50 ${i === 0 && selectedScrap.images.length % 2 !== 0 ? 'col-span-2 aspect-video' : 'aspect-square'}`}>
                           <img src={img} alt="Scrap" className="w-full h-full object-cover" />
                         </div>
                       ))}
                     </div>
                   )}
 
-
-
-                  {/* Status Badge */}
-                  <div className={`p-4 rounded-3xl border text-center font-black uppercase tracking-widest text-xs
-                    ${selectedScrap.status === 'pending' ? 'bg-amber-50 text-amber-600 border-amber-100' : ''}
-                    ${selectedScrap.status === 'accepted' ? 'bg-green-50 text-green-600 border-green-100' : ''}
-                    ${selectedScrap.status === 'completed' ? 'bg-gray-50 text-gray-500 border-gray-200' : ''}
-                  `}>
-                    Status: {selectedScrap.status}
+                  {/* Status row */}
+                  <div className="flex items-center justify-between border-b border-slate-50 pb-2.5">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Listing Status</span>
+                    <span className={`px-2 py-0.5 rounded-full border text-[9px] font-extrabold uppercase tracking-wider
+                      ${selectedScrap.status === 'pending' ? 'bg-orange-50/80 text-[#BB5F36] border-orange-100' : ''}
+                      ${selectedScrap.status === 'accepted' ? 'bg-teal-50 text-[#347989] border-teal-100' : ''}
+                      ${selectedScrap.status === 'completed' ? 'bg-slate-100 text-slate-800 border-slate-200' : ''}
+                      ${selectedScrap.status === 'cancelled' ? 'bg-slate-50 text-slate-400 border-slate-200' : ''}
+                    `}>
+                      {selectedScrap.status}
+                    </span>
                   </div>
 
-                  {/* Description */}
+                  {/* Description Box */}
                   {selectedScrap.description && (
-                    <div className="bg-blue-50/30 p-5 rounded-3xl border border-blue-100/30 italic">
-                      <p className="text-gray-600 font-medium leading-relaxed">"{selectedScrap.description}"</p>
+                    <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-100">
+                      <span className="text-[9px] font-black text-slate-450 uppercase tracking-wider block mb-1">Description</span>
+                      <p className="text-xs font-semibold text-slate-700 leading-relaxed italic">
+                        "{selectedScrap.description}"
+                      </p>
                     </div>
                   )}
 
-                  {/* Location */}
-                  <div className="space-y-3">
-                    <h3 className="text-sm font-black text-gray-900 flex items-center gap-2">
-                      <FiMapPin className="text-red-500" /> Pickup Address
-                    </h3>
-                    <div className="bg-gray-50 p-4 rounded-3xl border border-gray-100">
-                      <p className="font-bold text-gray-800">{selectedScrap.address?.addressLine1}</p>
-                      <p className="text-xs text-gray-400 mt-1 uppercase font-bold">{selectedScrap.address?.city}, {selectedScrap.address?.state}</p>
+                  {/* Location Box */}
+                  <div className="space-y-1">
+                    <span className="text-[9px] font-black text-slate-450 uppercase tracking-wider block pl-1">Pickup Address</span>
+                    <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-100 flex items-start gap-2 text-xs font-semibold text-slate-800">
+                      <FiMapPin className="text-[#BB5F36] w-3.5 h-3.5 mt-0.5 shrink-0" />
+                      <div className="min-w-0">
+                        <p className="font-extrabold text-slate-900 leading-snug">{selectedScrap.address?.addressLine1}</p>
+                        <p className="text-[10px] text-slate-400 uppercase font-bold mt-0.5">{selectedScrap.address?.city}, {selectedScrap.address?.state}</p>
+                      </div>
                     </div>
                   </div>
 
                   {/* Timeline */}
-                  <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-[10px] font-black uppercase text-gray-400 tracking-wider">
-                    <span className="flex items-center gap-1"><FiClock /> Posted {new Date(selectedScrap.createdAt).toLocaleDateString()}</span>
-                    {selectedScrap.status === 'accepted' && <span className="text-green-600">Vendor Assigned</span>}
+                  <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[9px] font-bold text-slate-400">
+                    <span className="flex items-center gap-1"><FiClock className="w-3 h-3" /> Listed {new Date(selectedScrap.createdAt).toLocaleDateString()}</span>
+                    {selectedScrap.status === 'accepted' && <span className="text-[#347989] font-black">Vendor Assigned</span>}
                   </div>
                 </div>
 
-                <div className="p-4 bg-gray-50/50 border-t border-gray-100 flex gap-3">
+                {/* Footer buttons */}
+                <div className="p-3 bg-slate-50 border-t border-slate-150 flex gap-2">
                   <button
                     onClick={() => setSelectedScrap(null)}
-                    className="flex-1 py-4 bg-gray-900 text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-xl active:scale-95 transition-all"
+                    className="flex-1 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold uppercase tracking-wider text-xs active:scale-95 transition-all"
                   >
-                    Back to Listings
+                    Close
                   </button>
                   {(selectedScrap.status === 'pending' || selectedScrap.status === 'cancelled') && (
                     <button
                       onClick={(e) => handleDelete(e, selectedScrap._id)}
-                      className="px-6 py-4 bg-red-50 text-red-600 border border-red-100 rounded-2xl font-black uppercase tracking-widest text-xs active:scale-95 transition-all flex items-center gap-2"
+                      className="px-4 py-2.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-100 rounded-xl font-bold uppercase tracking-wider text-xs active:scale-95 transition-all flex items-center gap-1"
                     >
-                      <FiTrash2 />
-                      Delete
+                      <FiTrash2 className="w-3.5 h-3.5" />
+                      <span>Delete</span>
                     </button>
                   )}
                 </div>

@@ -4,7 +4,7 @@ import { FiArrowLeft, FiCheckCircle, FiUsers, FiShield, FiClock, FiAward, FiHear
 import { gsap } from 'gsap';
 import Logo from '../../../../components/common/Logo';
 
-const AboutHomestr = () => {
+const AboutGoBee = () => {
   const navigate = useNavigate();
   const containerRef = useRef(null);
 
@@ -24,9 +24,9 @@ const AboutHomestr = () => {
   }, []);
 
   // Gradient Definition for re-use in inline styles
-  const homestrGradient = 'linear-gradient(135deg, #347989 0%, #BB5F36 100%)';
-  const homestrTextGradient = {
-    background: homestrGradient,
+  const gobeeGradient = 'linear-gradient(135deg, #347989 0%, #BB5F36 100%)';
+  const gobeeTextGradient = {
+    background: gobeeGradient,
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
   };
@@ -64,7 +64,7 @@ const AboutHomestr = () => {
     <div ref={containerRef} className="min-h-screen bg-gray-50 pb-10">
       {/* SVG Gradient Definition */}
       <svg width="0" height="0" className="absolute">
-        <linearGradient id="homestr-about-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="gobee-about-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#347989" />
           <stop offset="50%" stopColor="#D68F35" />
           <stop offset="100%" stopColor="#BB5F36" />
@@ -80,7 +80,7 @@ const AboutHomestr = () => {
           >
             <FiArrowLeft className="w-5 h-5 text-gray-700" />
           </button>
-          <span className="text-xl font-bold" style={homestrTextGradient}>About Cleaning Expert Services</span>
+          <span className="text-xl font-bold" style={gobeeTextGradient}>About Go Bee</span>
         </div>
       </header>
 
@@ -103,7 +103,7 @@ const AboutHomestr = () => {
           </div>
 
           <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
-            Welcome to <span style={homestrTextGradient}>Cleaning Expert Services</span>
+            Welcome to <span style={gobeeTextGradient}>Go Bee</span>
           </h1>
           <p className="text-gray-500 max-w-xs mx-auto leading-relaxed">
             Your trusted partner for premium home and personal care services.
@@ -132,14 +132,14 @@ const AboutHomestr = () => {
             </div>
             <h3 className="text-lg font-bold text-gray-800 mb-3">Our Mission</h3>
             <p className="text-sm text-gray-600 leading-relaxed relative z-10">
-              Cleaning Expert Services is dedicated to revolutionizing how you experience home services. We connect you with top-tier professionals to deliver safe, reliable, and high-quality services right at your doorstep. We believe in making life simpler, one service at a time.
+              Go Bee is dedicated to revolutionizing how you experience home services. We connect you with top-tier professionals to deliver safe, reliable, and high-quality services right at your doorstep. We believe in making life simpler, one service at a time.
             </p>
           </div>
         </div>
 
         {/* Why Choose Us Grid */}
         <div className="animate-item">
-          <h3 className="text-lg font-bold text-gray-800 mb-4 px-1">Why Choose Cleaning Expert Services?</h3>
+          <h3 className="text-lg font-bold text-gray-800 mb-4 px-1">Why Choose Go Bee?</h3>
           <div className="grid grid-cols-2 gap-3">
             {features.map((feature, index) => (
               <div
@@ -148,7 +148,7 @@ const AboutHomestr = () => {
               >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300"
                   style={{ background: 'linear-gradient(135deg, rgba(52, 121, 137, 0.1), rgba(187, 95, 54, 0.1))' }}>
-                  <feature.icon className="w-5 h-5" style={{ stroke: 'url(#homestr-about-gradient)' }} />
+                  <feature.icon className="w-5 h-5" style={{ stroke: 'url(#gobee-about-gradient)' }} />
                 </div>
                 <h4 className="text-sm font-bold text-gray-800 mb-1">{feature.title}</h4>
                 <p className="text-xs text-gray-500 leading-relaxed">{feature.description}</p>
@@ -183,7 +183,7 @@ const AboutHomestr = () => {
         {/* Footer Info */}
         <div className="animate-item text-center pt-4 border-t border-gray-200">
           <p className="text-xs text-gray-400 mb-1">Designed & Developed by</p>
-          <span className="text-sm font-bold tracking-wide" style={homestrTextGradient}>Cleaning Expert Services Team</span>
+          <span className="text-sm font-bold tracking-wide" style={gobeeTextGradient}>Go Bee Team</span>
           <p className="text-[10px] text-gray-300 mt-4">v7.6.27 • Made with ❤️ in India</p>
         </div>
       </main>
@@ -198,4 +198,4 @@ const AboutHomestr = () => {
   );
 };
 
-export default AboutHomestr;
+export default AboutGoBee;

@@ -97,14 +97,14 @@ const DetailedServiceCard = memo(({ image, title, rating, reviews, price, origin
         )}
       </div>
       <div className="p-3 flex flex-col flex-1">
-        <h3 className="text-[13px] font-semibold text-gray-900 leading-snug mb-1 line-clamp-2 min-h-[40px]">{title}</h3>
-
-        <div className="flex items-center gap-1 mb-2">
-          <AiFillStar className="w-3.5 h-3.5 text-yellow-400" />
-          <span className="text-xs text-gray-900 font-bold">{rating}</span>
-          {reviews && (
-            <span className="text-[10px] text-gray-500">({reviews})</span>
-          )}
+        <div className="flex items-start justify-between gap-2 mb-1.5 min-h-[40px]">
+          <h3 className="text-[13px] font-bold text-gray-900 leading-snug line-clamp-2 pr-1 flex-1">
+            {title}
+          </h3>
+          <div className="flex items-center gap-0.5 shrink-0 bg-yellow-50/90 px-1.5 py-0.5 rounded-lg border border-yellow-100 shadow-sm mt-0.5">
+            <AiFillStar className="w-3 h-3 text-yellow-500" />
+            <span className="text-[10px] text-gray-950 font-black leading-none">{rating}</span>
+          </div>
         </div>
 
         <div className="flex items-center gap-2 mt-auto">

@@ -6,6 +6,7 @@ import massageMenIcon from '../../../../../assets/images/icons/services/massage-
 import cleaningIcon from '../../../../../assets/images/icons/services/cleaning-icon.png';
 import electricianPlumberIcon from '../../../../../assets/images/icons/services/electrician-plumber-carpenter-icon.png';
 import acApplianceRepairIcon from '../../../../../assets/images/icons/services/ac-appliance-repair-icon.png';
+import { themeColors } from '../../../../../theme';
 
 const toAssetUrl = (url) => {
   if (!url) return '';
@@ -30,19 +31,19 @@ const ServiceCategories = React.memo(({ categories, onCategoryClick, onSeeAllCli
   return (
     <div className="px-5">
       {/* Section Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex flex-col">
-          <h2 className="text-[20px] font-black text-gray-900 tracking-tight flex items-center gap-2">
+          <h2 className="text-[20px] font-extrabold text-gray-900 tracking-tight">
             Service Categories
-            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(40,116,240,0.5)]"></div>
           </h2>
-          <p className="text-[11px] text-gray-400 font-bold uppercase tracking-[0.15em] -mt-0.5">Premium Home Services</p>
+          <p className="text-[9px] text-slate-400 font-extrabold uppercase tracking-[0.2em] mt-0.5">
+            Premium Home Services
+          </p>
         </div>
-
       </div>
 
       {/* Professional Grid Layout */}
-      <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-y-7 gap-x-3">
+      <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-y-4.5 gap-x-1.5">
         {serviceCategories.map((category, index) => {
           const iconSrc = toAssetUrl(category.icon || category.image);
           return (
@@ -53,7 +54,7 @@ const ServiceCategories = React.memo(({ categories, onCategoryClick, onSeeAllCli
                   <img
                     src={iconSrc}
                     alt={category.title}
-                    className="w-12 h-12 object-contain group-hover:rotate-12 transition-transform duration-500 will-change-transform"
+                    className="w-10 h-10 object-contain transition-transform duration-300 ease-out group-hover:scale-110 will-change-transform"
                     loading="lazy"
                     decoding="async"
                   />

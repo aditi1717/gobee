@@ -109,13 +109,13 @@ const BottomNav = React.memo(() => {
       >
         <div ref={navRef} className="flex items-center justify-around max-w-md mx-auto relative">
 
-          {/* Animated Sliding Indicator */}
+          {/* Animated Sliding Indicator (Black) */}
           <motion.div
             className="absolute -top-3 h-1 rounded-full"
             animate={{
               left: indicatorStyle.left,
               width: indicatorStyle.width,
-              background: activeColor?.gradient || navItemColors.home.gradient,
+              background: '#000000',
             }}
             transition={{
               type: "spring",
@@ -123,21 +123,20 @@ const BottomNav = React.memo(() => {
               damping: 30
             }}
             style={{
-              boxShadow: `0 2px 12px ${activeColor?.shadow || navItemColors.home.shadow}`,
+              boxShadow: '0 1px 4px rgba(0, 0, 0, 0.15)',
             }}
           />
 
           {navItems.map((item) => {
             const IconComponent = activeTab === item.id ? item.filledIcon : item.icon;
             const isActive = activeTab === item.id;
-            const itemColor = navItemColors[item.id];
 
             return (
               <motion.button
                 key={item.id}
                 onClick={() => handleTabClick(item.path)}
-                whileTap={{ scale: 0.9 }}
-                className="flex flex-col items-center justify-center w-16 h-14 rounded-2xl transition-all duration-200 relative"
+                whileTap={{ scale: 0.95 }}
+                className="flex flex-col items-center justify-center w-16 h-14 rounded-2xl transition-all duration-200 relative hover:bg-black/[0.03] group"
               >
                 {/* Active Background Glow */}
                 <AnimatePresence>
@@ -149,7 +148,7 @@ const BottomNav = React.memo(() => {
                       transition={{ duration: 0.2 }}
                       className="absolute inset-1 rounded-xl"
                       style={{
-                        background: itemColor.bg,
+                        background: 'rgba(0, 0, 0, 0.04)',
                       }}
                     />
                   )}
@@ -159,15 +158,15 @@ const BottomNav = React.memo(() => {
                   <motion.div
                     className="relative mb-1"
                     animate={{
-                      scale: isActive ? 1.1 : 1,
-                      y: isActive ? -2 : 0
+                      scale: isActive ? 1.08 : 1,
+                      y: isActive ? -1.5 : 0
                     }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
                     <IconComponent
-                      className="w-6 h-6 transition-colors duration-200"
+                      className="w-5.5 h-5.5 transition-colors duration-200"
                       style={{
-                        color: isActive ? itemColor.primary : '#9CA3AF',
+                        color: isActive ? '#000000' : '#4B5563',
                       }}
                     />
                     {item.isCart && cartCount > 0 && (
@@ -182,8 +181,8 @@ const BottomNav = React.memo(() => {
                   </motion.div>
                   <motion.span
                     animate={{
-                      color: isActive ? itemColor.primary : '#6B7280',
-                      fontWeight: isActive ? 600 : 500
+                      color: isActive ? '#000000' : '#4B5563',
+                      fontWeight: isActive ? 700 : 500
                     }}
                     className="text-[10px]"
                   >

@@ -709,7 +709,7 @@ const Checkout = () => {
         amount: orderResponse.data.amount * 100,
         currency: orderResponse.data.currency || 'INR',
         order_id: orderResponse.data.orderId,
-        name: 'Homestr',
+        name: 'Go Bee',
         description: `Payment for ${bookingRequest.serviceName || 'service'}`,
         handler: async function (response) {
           try {
@@ -912,7 +912,7 @@ const Checkout = () => {
           key,
           amount: amount * 100,
           currency: 'INR',
-          name: 'Homestr',
+          name: 'Go Bee',
           description: `Payment for ${plan.name} ${isUpgrade ? '(Upgrade)' : ''}`,
           order_id: orderId,
           handler: async (response) => {
@@ -1110,10 +1110,10 @@ const Checkout = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white pb-32 flex items-center justify-center">
+      <div className="min-h-screen bg-[#F8FAFC] pb-32 flex items-center justify-center">
         <div className="flex flex-col items-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mb-4" style={{ borderColor: themeColors.button }}></div>
-          <p className="text-gray-500">Loading checkout details...</p>
+          <div className="animate-spin rounded-full h-10 w-10 border-2 border-t-transparent mb-4" style={{ borderColor: '#BB5F36', borderTopColor: 'transparent' }}></div>
+          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Loading checkout...</p>
         </div>
       </div>
     );
@@ -1121,26 +1121,24 @@ const Checkout = () => {
 
   if (cartItems.length === 0 && currentStep === 'details' && !searchingVendors && !showVendorModal) {
     return (
-      <div className="min-h-screen bg-white pb-32">
-        <header className="bg-white">
-          <div className="px-4 pt-4 pb-3">
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handleBack}
-                className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-              >
-                <FiArrowLeft className="w-6 h-6 text-black" />
-              </button>
-              <h1 className="text-xl font-bold text-black">Your cart</h1>
-            </div>
-          </div>
-          <div className="border-b border-gray-200"></div>
+      <div className="min-h-screen bg-[#F8FAFC] pb-32">
+        <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/70 border-b border-slate-100 px-4 py-3 flex items-center gap-3 shadow-sm">
+          <button
+            onClick={handleBack}
+            className="w-9 h-9 bg-white rounded-xl flex items-center justify-center shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors"
+          >
+            <FiArrowLeft className="w-4 h-4 text-slate-800" />
+          </button>
+          <h1 className="text-lg font-bold text-slate-900 tracking-tight">Checkout</h1>
         </header>
-        <main className="px-4 py-4">
-          <div className="flex flex-col items-center justify-center py-20">
-            <FiShoppingCart className="w-16 h-16 text-gray-300 mb-4" />
-            <p className="text-gray-500 text-lg font-medium">Your cart is empty</p>
-            <p className="text-gray-400 text-sm mt-2">Add services to get started</p>
+
+        <main className="px-4 py-4 max-w-lg mx-auto">
+          <div className="flex flex-col items-center justify-center py-20 bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
+            <div className="bg-slate-50 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4 border border-slate-100">
+              <FiShoppingCart className="w-6 h-6 text-slate-300" />
+            </div>
+            <p className="text-slate-900 font-bold text-sm">Your cart is empty</p>
+            <p className="text-xs text-slate-400 mt-1">Add services to get started</p>
           </div>
         </main>
       </div>
@@ -1148,42 +1146,37 @@ const Checkout = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white pb-80">
-      {/* Header */}
-      <header className="bg-white">
-        <div className="px-4 pt-4 pb-3">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleBack}
-              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-            >
-              <FiArrowLeft className="w-6 h-6 text-black" />
-            </button>
-            <h1 className="text-xl font-bold text-black">
-              {category ? `${category} Checkout` : 'Your cart'}
-            </h1>
-          </div>
-        </div>
-        <div className="border-b border-gray-200"></div>
+    <div className="min-h-screen bg-[#F8FAFC] pb-80">
+      {/* Modern Grayscale Header */}
+      <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/70 border-b border-slate-100 px-4 py-3 flex items-center gap-3 shadow-sm">
+        <button
+          onClick={handleBack}
+          className="w-9 h-9 bg-white rounded-xl flex items-center justify-center shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors"
+        >
+          <FiArrowLeft className="w-4 h-4 text-slate-800" />
+        </button>
+        <h1 className="text-lg font-bold text-slate-900 tracking-tight">
+          {category ? `${category} Checkout` : 'Checkout'}
+        </h1>
       </header>
 
-      <main className="px-4 py-4">
+      <main className="px-4 py-4 max-w-lg mx-auto">
         {/* Savings Banner */}
         {savings > 0 && (
-          <div className="bg-green-50 border border-green-100 rounded-2xl p-4 mb-6 flex items-center justify-between">
+          <div className="bg-green-50 border border-green-100 rounded-2xl p-4 mb-4 flex items-center justify-between shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-green-200">
-                <MdStar className="text-white w-6 h-6" />
+              <div className="w-9 h-9 bg-emerald-600 rounded-full flex items-center justify-center shrink-0 shadow-sm">
+                <MdStar className="text-white w-5 h-5" />
               </div>
               <div>
-                <p className="text-xs font-bold text-green-600 uppercase tracking-wider">Smart Choice!</p>
-                <p className="text-sm font-black text-slate-900">
-                  You're saving ₹{savings.toLocaleString('en-IN')}
+                <p className="text-[10px] font-black text-emerald-700 uppercase tracking-wider">Smart Choice!</p>
+                <p className="text-xs font-extrabold text-slate-900">
+                  You are saving ₹{savings.toLocaleString('en-IN')}
                 </p>
               </div>
             </div>
-            <div className="bg-white px-3 py-1 rounded-full shadow-sm border border-green-100">
-              <span className="text-[10px] font-black text-green-600">BEST PRICE</span>
+            <div className="bg-white px-2.5 py-0.5 rounded-full border border-green-150">
+              <span className="text-[9px] font-black text-emerald-600">BEST PRICE</span>
             </div>
           </div>
         )}
@@ -1195,75 +1188,74 @@ const Checkout = () => {
             const categoryName = item.categoryTitle || item.category;
 
             return (
-              <div key={item._id} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm relative overflow-hidden">
+              <div key={item._id} className="bg-white border border-slate-100 border-l-4 !border-l-[#BB5F36] rounded-2xl p-4 shadow-[0_4px_15px_-4px_rgba(0,0,0,0.02)] relative overflow-hidden">
                 {/* Brand Header */}
                 {(brandName || categoryName) && (
-                  <div className="flex items-center gap-2 mb-3 pb-3 border-b border-gray-50">
+                  <div className="flex items-center gap-2 mb-3 pb-3 border-b border-slate-50">
                     {item.sectionIcon ? (
-                      <img src={toAssetUrl(item.sectionIcon)} className="w-5 h-5 rounded-md object-cover border border-gray-100" alt="" />
+                      <img src={toAssetUrl(item.sectionIcon)} className="w-5 h-5 rounded-md object-cover border border-slate-100" alt="" />
                     ) : (
-                      <div className="w-5 h-5 rounded-md bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-500">
+                      <div className="w-5 h-5 rounded-md bg-slate-50 border border-slate-150 flex items-center justify-center text-[9px] font-bold text-slate-500">
                         {(brandName || "B").charAt(0)}
                       </div>
                     )}
                     <div className="flex flex-col leading-none">
-                      {brandName && <span className="text-xs font-bold text-gray-900">{brandName}</span>}
-                      {categoryName && <span className="text-[10px] font-medium text-gray-500 uppercase tracking-wide mt-0.5">{categoryName}</span>}
+                      {brandName && <span className="text-xs font-extrabold text-slate-900">{brandName}</span>}
+                      {categoryName && <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider mt-0.5">{categoryName}</span>}
                     </div>
                   </div>
                 )}
 
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex-1 pr-4">
-                    <h3 className="text-base font-bold text-gray-900 mb-1 leading-snug">{item.title}</h3>
+                <div className="flex items-start justify-between mb-3 gap-3">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-xs font-extrabold text-slate-900 leading-snug truncate">{item.title}</h3>
                     {item.description && (
-                      <p className="text-sm text-gray-600 line-clamp-2">{item.description}</p>
+                      <p className="text-[10px] text-slate-500 font-medium mt-0.5 line-clamp-1">{item.description}</p>
                     )}
                     {item.duration && (
-                      <div className="flex items-center gap-1 mt-2 text-xs text-gray-500">
+                      <div className="flex items-center gap-1 mt-1.5 text-[10px] font-semibold text-slate-400">
                         <FiClock className="w-3 h-3" />
                         {item.duration}
                       </div>
                     )}
                   </div>
                   {!item.isPlan && (
-                    <div className="flex flex-col items-end gap-2">
-                      <div className="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg p-0.5">
-                        <button
-                          onClick={() => handleQuantityChange(item._id, -1)}
-                          className="p-1.5 hover:bg-white rounded-md transition-all shadow-sm"
-                        >
-                          <FiMinus className="w-3.5 h-3.5 text-gray-600" />
-                        </button>
-                        <span className="w-6 text-center text-sm font-bold text-gray-900">{item.serviceCount || 1}</span>
-                        <button
-                          onClick={() => handleQuantityChange(item._id, 1)}
-                          className="p-1.5 hover:bg-white rounded-md transition-all shadow-sm"
-                        >
-                          <FiPlus className="w-3.5 h-3.5 text-gray-900" />
-                        </button>
-                      </div>
+                    <div className="flex items-center bg-slate-50 border border-slate-200 rounded-lg p-0.5 gap-1 shrink-0">
+                      <button
+                        onClick={() => handleQuantityChange(item._id, -1)}
+                        className="w-5 h-5 bg-white hover:bg-slate-100 text-slate-500 rounded flex items-center justify-center border border-slate-200/50 transition-colors"
+                      >
+                        <FiMinus className="w-2.5 h-2.5" />
+                      </button>
+                      <span className="w-5 text-center text-xs font-black text-slate-900">{item.serviceCount || 1}</span>
+                      <button
+                        onClick={() => handleQuantityChange(item._id, 1)}
+                        className="w-5 h-5 bg-white hover:bg-slate-100 text-slate-500 rounded flex items-center justify-center border border-slate-200/50 transition-colors"
+                      >
+                        <FiPlus className="w-2.5 h-2.5" />
+                      </button>
                     </div>
                   )}
                   {!item.isPlan && (
                     <button
                       onClick={() => handleRemoveItem(item._id)}
-                      className="absolute top-3 right-3 p-1.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors"
+                      className="p-1 text-slate-350 hover:text-red-650 hover:bg-red-50 rounded-lg transition-colors shrink-0"
                     >
-                      <FiTrash2 className="w-4 h-4" />
+                      <FiTrash2 className="w-3.5 h-3.5" />
                     </button>
                   )}
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-base font-bold text-black">
+                
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-xs font-black text-slate-900">
                     {calculateItemPrice(item) === 0 ? (
-                      <span className="text-green-600">Free</span>
+                      <span className="text-teal-600 font-extrabold">Free</span>
                     ) : (
                       `₹${(item.price || 0).toLocaleString('en-IN')}`
                     )}
                   </span>
                   {calculateItemPrice(item) === 0 && (
-                    <span className="text-[10px] font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded-full border border-green-200">
+                    <span className="text-[8px] font-black bg-teal-50 text-[#347989] px-1.5 py-0.5 rounded-md border border-teal-100">
                       WITH PLAN
                     </span>
                   )}
@@ -1274,7 +1266,7 @@ const Checkout = () => {
                     const originalTotal = unitOriginalPrice * (item.serviceCount || 1);
                     if (originalTotal > currentTotal) {
                       return (
-                        <span className="text-sm text-gray-400 line-through">
+                        <span className="text-[10px] text-slate-400 line-through font-bold">
                           ₹{originalTotal.toLocaleString('en-IN')}
                         </span>
                       );
@@ -1283,26 +1275,26 @@ const Checkout = () => {
                   })()}
                 </div>
               </div>
-            )
+            );
           })}
         </div>
 
-        {/* ... */}
-
-
-        <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
+        {/* Contact Info Card */}
+        <div className="bg-white border border-slate-100 rounded-2xl p-4 mb-4 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <FiPhone className="w-5 h-5 text-gray-600" />
-              <div>
-                <p className="text-sm font-medium text-black">{contactDetails.name || JSON.parse(localStorage.getItem('userData'))?.name || 'Verified Customer'}</p>
-                <p className="text-xs text-gray-600">{contactDetails.phone || userPhone || 'Loading...'}</p>
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-150 flex items-center justify-center text-slate-600 shrink-0">
+                <FiPhone className="w-4 h-4" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block">Contact details</span>
+                <p className="text-xs font-extrabold text-slate-900 mt-0.5 truncate">{contactDetails.name || JSON.parse(localStorage.getItem('userData'))?.name || 'Verified Customer'}</p>
+                <p className="text-[10px] font-semibold text-slate-500 mt-0.5">{contactDetails.phone || userPhone || 'Loading...'}</p>
               </div>
             </div>
             <button
               onClick={() => setShowContactModal(true)}
-              className="text-sm font-medium hover:underline"
-              style={{ color: themeColors.button }}
+              className="text-xs font-bold text-[#BB5F36] hover:text-[#a04e29] transition-colors"
             >
               Change
             </button>
@@ -1310,186 +1302,167 @@ const Checkout = () => {
         </div>
 
         {/* Payment Summary */}
-        <div className="bg-white border-2 border-slate-100 rounded-2xl p-5 mb-6 shadow-sm overflow-hidden relative">
-          {/* Decorative Background for Header */}
-          <div className="absolute top-0 left-0 right-0 h-1" style={{ background: themeColors.gradient }}></div>
-
-          <h3 className="text-lg font-bold text-slate-900 mb-5 flex items-center gap-2">
-            <FiShoppingCart className="w-5 h-5" style={{ color: themeColors.button }} />
+        <div className="bg-white border border-slate-100 rounded-2xl p-4 mb-4 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+          <h3 className="text-xs font-black text-slate-900 uppercase tracking-widest mb-3.5 flex items-center gap-1.5">
+            <FiShoppingCart className="w-4 h-4 text-[#BB5F36]" />
             Payment Summary
           </h3>
 
-          <div className="space-y-3">
-            {/* Original Price (before plan) */}
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-slate-600">Item Total</span>
-              <span className="text-sm font-medium text-slate-900">
+          <div className="space-y-2.5">
+            {/* Original Price */}
+            <div className="flex justify-between items-center text-xs font-bold">
+              <span className="text-slate-500">Item Total</span>
+              <span className="text-slate-900">
                 ₹{totalOriginalPrice.toLocaleString('en-IN')}
               </span>
             </div>
 
-            {/* Discount Line */}
+            {/* Discount */}
             {displaySavings > 0 && (
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-green-600">Discount</span>
-                <span className="text-sm font-medium text-green-600">-₹{displaySavings.toLocaleString('en-IN')}</span>
+              <div className="flex justify-between items-center text-xs font-bold">
+                <span className="text-green-600">Discount</span>
+                <span className="text-green-600">-₹{displaySavings.toLocaleString('en-IN')}</span>
               </div>
             )}
 
-            {/* Upgrade Credit (for plan upgrades) */}
+            {/* Upgrade Credit */}
             {upgradePreview && upgradePreview.credit > 0 && (
-              <div className="flex justify-between items-center text-green-600">
-                <span className="text-sm font-medium">Plan Credit</span>
-                <span className="text-sm font-bold">-₹{upgradePreview.credit.toLocaleString('en-IN')}</span>
+              <div className="flex justify-between items-center text-xs font-bold text-green-600">
+                <span>Plan Credit</span>
+                <span className="font-extrabold">-₹{upgradePreview.credit.toLocaleString('en-IN')}</span>
               </div>
             )}
 
             {/* Taxes */}
             {displayTax > 0 && (
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-500">GST ({gstPercentage}%)</span>
-                <span className="text-sm font-medium text-slate-700">₹{displayTax.toLocaleString('en-IN')}</span>
+              <div className="flex justify-between items-center text-xs font-bold">
+                <span className="text-slate-400">GST ({gstPercentage}%)</span>
+                <span className="text-slate-700">₹{displayTax.toLocaleString('en-IN')}</span>
               </div>
             )}
 
             {/* Visited Fee */}
             {displayFee > 0 && (
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-500">Convenience Fee</span>
-                <span className="text-sm font-medium text-slate-700">₹{displayFee.toLocaleString('en-IN')}</span>
+              <div className="flex justify-between items-center text-xs font-bold">
+                <span className="text-slate-400">Convenience Fee</span>
+                <span className="text-slate-700">₹{displayFee.toLocaleString('en-IN')}</span>
               </div>
             )}
 
-            {/* Divider */}
-            <div className="border-t border-slate-200 pt-4 mt-2">
-              <div className="flex justify-between items-center">
-                <span className="text-base font-bold text-slate-900">Total Payable</span>
-                <div className="flex flex-col items-end">
-                  {totalAmount === 0 ? (
-                    <>
-                      <span className="text-sm font-medium text-slate-400 line-through">
-                        ₹{Math.round(totalOriginalPrice + displayTax + displayFee).toLocaleString('en-IN')}
-                      </span>
-                      <span className="text-xl font-black text-green-600">FREE</span>
-                    </>
-                  ) : (
-                    <span className="text-xl font-black text-slate-900">
-                      ₹{totalAmount.toLocaleString('en-IN')}
+            {/* Total Row */}
+            <div className="border-t border-slate-100 pt-3 mt-1.5 flex justify-between items-center">
+              <span className="text-xs font-black text-slate-800 uppercase tracking-wider">Total Payable</span>
+              <div className="flex flex-col items-end">
+                {totalAmount === 0 ? (
+                  <>
+                    <span className="text-[10px] font-bold text-slate-400 line-through">
+                      ₹{Math.round(totalOriginalPrice + displayTax + displayFee).toLocaleString('en-IN')}
                     </span>
-                  )}
-                </div>
+                    <span className="text-sm font-black text-teal-600">FREE</span>
+                  </>
+                ) : (
+                  <span className="text-sm font-black text-slate-900">
+                    ₹{totalAmount.toLocaleString('en-IN')}
+                  </span>
+                )}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Important Note regarding Base Price */}
-        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 flex items-start gap-4 shadow-sm">
-          <div className="bg-blue-100 p-2 rounded-full shrink-0 mt-0.5">
-            <FiInfo className="w-5 h-5 text-blue-600" />
-          </div>
-          <div>
-            <h4 className="text-sm font-bold text-blue-900 mb-1">Note</h4>
-            <p className="text-sm text-blue-800 leading-relaxed font-medium">
-              This is a base booking cost. Additional service cost is decided by the vendor after service bill preparation.
-            </p>
-          </div>
+        {/* Base Cost Disclaimer */}
+        <div className="bg-slate-50 border border-slate-100 p-3 rounded-xl flex items-start gap-2.5 mb-4">
+          <FiInfo className="w-4 h-4 text-[#BB5F36] mt-0.5 shrink-0" />
+          <p className="text-[10px] text-slate-500 font-semibold italic leading-snug">
+            This is a base booking cost. Additional service cost is decided by the vendor after service bill preparation.
+          </p>
         </div>
 
-        {/* Free Plan Benefit Card */}
+        {/* Free Plan Benefit Banner */}
         {totalAmount === 0 && (
-          <div className="bg-gradient-to-br from-green-50 to-emerald-100/50 border border-green-200 rounded-2xl p-5 mb-6 relative overflow-hidden">
-            <div className="flex items-start gap-4 z-10 relative">
-              <div className="bg-green-500 rounded-full p-2 shadow-lg shadow-green-200 shrink-0">
-                <FiCheckCircle className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-green-800 mb-1">Covered by {planBenefits.name}</h3>
-                <p className="text-sm text-green-700 leading-relaxed font-medium opacity-90">
-                  You save <span className="font-bold">₹{Math.round(totalOriginalPrice + displayTax + displayFee).toLocaleString('en-IN')}</span> on this booking!
-                  Your plan covers all costs.
-                </p>
-              </div>
+          <div className="bg-teal-50/50 border border-teal-100 text-[#347989] p-4 rounded-xl mb-4 flex items-start gap-3">
+            <FiCheckCircle className="w-5 h-5 text-[#347989] mt-0.5 shrink-0" />
+            <div className="min-w-0">
+              <h4 className="text-xs font-extrabold uppercase tracking-wide">Covered by {planBenefits.name}</h4>
+              <p className="text-[10px] font-semibold opacity-90 mt-0.5 leading-snug">
+                You save <span className="font-extrabold">₹{Math.round(totalOriginalPrice + displayTax + displayFee).toLocaleString('en-IN')}</span> on this booking! Your active membership covers all costs.
+              </p>
             </div>
           </div>
         )}
 
         {/* Cancellation Policy */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
-          <h3 className="text-base font-bold text-black mb-2">Cancellation policy</h3>
-          <p className="text-sm text-gray-700 mb-2">
+        <div className="bg-white border border-slate-100 rounded-2xl p-4 mb-4 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+          <h3 className="text-xs font-black text-slate-900 uppercase tracking-widest mb-1.5">Cancellation policy</h3>
+          <p className="text-xs text-slate-500 font-medium leading-relaxed mb-2.5">
             Free cancellations if done more than 12 hrs before the service or if a professional isn't assigned. A fee will be charged otherwise.
           </p>
           <button
             onClick={() => navigate('/user/cancellation-policy')}
-            className="text-sm font-medium hover:underline"
-            style={{ color: themeColors.button }}
+            className="text-xs font-bold text-[#BB5F36] hover:underline"
           >
             Read full policy
           </button>
         </div>
-
-
       </main>
 
-      {/* Bottom Action Button */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40">
-
+      {/* Sticky Bottom Action Panel */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-150 z-40 max-w-lg mx-auto shadow-[0_-4px_20px_rgba(0,0,0,0.04)]">
         {/* Booking Type Toggle */}
         <div className="px-4 pt-3 pb-0">
-          <div className="flex bg-gray-100 p-1 rounded-xl mb-1">
+          <div className="flex bg-slate-50 p-1 rounded-xl border border-slate-150">
             <button
               onClick={() => setBookingType('instant')}
-              className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all flex items-center justify-center gap-2 ${bookingType === 'instant' ? 'bg-white shadow-sm text-black' : 'text-gray-500'}`}
+              className={`flex-1 py-1.5 text-xs font-extrabold uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-1.5 ${bookingType === 'instant' ? 'bg-white shadow-sm text-[#BB5F36]' : 'text-slate-400'}`}
             >
-              <span className="text-yellow-500">⚡</span> Book
+              <span>⚡</span> Instant
             </button>
             <button
               onClick={() => setBookingType('scheduled')}
-              className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all flex items-center justify-center gap-2 ${bookingType === 'scheduled' ? 'bg-white shadow-sm text-black' : 'text-gray-500'}`}
+              className={`flex-1 py-1.5 text-xs font-extrabold uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-1.5 ${bookingType === 'scheduled' ? 'bg-white shadow-sm text-slate-800' : 'text-slate-400'}`}
             >
-              <span>📅</span> Slot
+              <span>📅</span> Schedule
             </button>
           </div>
           {bookingType === 'instant' && (
-            <p className="text-xs text-center text-green-600 font-medium mt-1 mb-1">
-              <span className="font-bold">⚡ Priority Service:</span> Vendor arrives in ~45 mins
+            <p className="text-[10px] text-center text-teal-600 font-bold uppercase tracking-wider mt-1.5 mb-1">
+              ⚡ Priority booking: Vendor arrives in ~45 mins
             </p>
           )}
         </div>
 
         {/* Address and Slot Display */}
-        <div className="px-4 pt-2 pb-2 border-b border-gray-100">
+        <div className="px-4 py-2 border-b border-slate-100">
           {(houseNumber || addressDetails) ? (
-            <div className="space-y-2.5">
-              {/* Address */}
-              <div className="flex items-start gap-2.5">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(0, 166, 166, 0.1)' }}>
-                  <FiHome className="w-4 h-4" style={{ color: themeColors.button }} />
+            <div className="space-y-2">
+              {/* Address Row */}
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="w-6.5 h-6.5 rounded-lg bg-slate-50 border border-slate-150 flex items-center justify-center shrink-0">
+                  <FiHome className="w-3.5 h-3.5 text-slate-600" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs text-gray-600 mb-0.5">Address</p>
-                  <p className="text-sm font-medium text-black truncate">
+                <div className="flex-1 min-w-0 leading-tight">
+                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block">Pickup Address</span>
+                  <p className="text-xs font-bold text-slate-800 truncate">
                     {houseNumber ? `${houseNumber}, ` : ''}{address || 'Select Address'}
                   </p>
                 </div>
                 <button
                   onClick={() => setShowAddressModal(true)}
-                  className="p-1.5 hover:bg-gray-100 rounded-full transition-colors shrink-0 mt-0.5"
+                  className="p-1 hover:bg-slate-50 border border-slate-150 rounded transition-colors shrink-0"
                 >
-                  <FiEdit2 className="w-4 h-4 text-gray-600" />
+                  <FiEdit2 className="w-3 h-3 text-slate-500" />
                 </button>
               </div>
 
               {/* Time Slot (Only for Scheduled) */}
               {bookingType === 'scheduled' && (
-                <div className="flex items-start gap-2.5">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(0, 166, 166, 0.1)' }}>
-                    <FiClock className="w-4 h-4" style={{ color: themeColors.button }} />
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="w-6.5 h-6.5 rounded-lg bg-slate-50 border border-slate-150 flex items-center justify-center shrink-0">
+                    <FiClock className="w-3.5 h-3.5 text-slate-650" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs text-gray-600 mb-0.5">Time Slot</p>
-                    <p className="text-sm font-medium text-black">
+                  <div className="flex-1 min-w-0 leading-tight">
+                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block">Time Slot</span>
+                    <p className="text-xs font-bold text-slate-800">
                       {selectedDate ? (() => {
                         const { day, date: dateNum } = formatDate(selectedDate);
                         const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -1497,15 +1470,15 @@ const Checkout = () => {
                         const timeStr = selectedTime && getTimeSlots().find(slot => slot.value === selectedTime)?.display ? ` • ${getTimeSlots().find(slot => slot.value === selectedTime).display}` : '';
                         return `${day}, ${dateNum} ${month}${timeStr}`;
                       })() : (
-                        <span className="text-gray-400">Select Date & Time</span>
+                        <span className="text-slate-400 italic">Not scheduled yet</span>
                       )}
                     </p>
                   </div>
                   <button
                     onClick={() => setShowTimeSlotModal(true)}
-                    className="p-1.5 hover:bg-gray-100 rounded-full transition-colors shrink-0 mt-0.5"
+                    className="p-1 hover:bg-slate-50 border border-slate-150 rounded transition-colors shrink-0"
                   >
-                    <FiEdit2 className="w-4 h-4 text-gray-600" />
+                    <FiEdit2 className="w-3 h-3 text-slate-500" />
                   </button>
                 </div>
               )}
@@ -1513,31 +1486,33 @@ const Checkout = () => {
           ) : (
             <div
               onClick={() => setShowAddressModal(true)}
-              className="flex items-center justify-between p-3 bg-red-50 border border-red-100 rounded-xl cursor-pointer active:scale-[0.98] transition-all"
+              className="flex items-center justify-between p-2 px-3 bg-red-50 border border-red-100 rounded-xl cursor-pointer active:scale-[0.985] transition-all"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
-                  <FiHome className="w-5 h-5 text-red-600" />
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-red-900">Delivery Address Missing</p>
-                  <p className="text-xs text-red-600">Please add address to see availability</p>
+              <div className="flex items-center gap-2.5 min-w-0">
+                <FiHome className="w-4 h-4 text-red-600 shrink-0" />
+                <div className="leading-tight">
+                  <p className="text-[11px] font-black text-red-900 uppercase tracking-wider">Address details required</p>
+                  <p className="text-[10px] text-red-650 font-semibold mt-0.5">Please add address to proceed</p>
                 </div>
               </div>
-              <FiEdit2 className="w-4 h-4 text-red-400" />
+              <FiEdit2 className="w-3.5 h-3.5 text-red-400" />
             </div>
           )}
         </div>
 
-        <div className="p-4">
+        {/* Primary Checkout Button */}
+        <div className="p-3">
           <button
             onClick={plan ? handlePlanPayment :
               (houseNumber || addressDetails) ?
                 (currentStep === 'payment' ? handlePayment : handleSearchVendors) :
                 handleProceed}
             disabled={searchingVendors}
-            className="w-full text-white py-3 rounded-lg text-base font-semibold transition-colors disabled:opacity-50 shadow-lg shadow-teal-500/30"
-            style={{ backgroundColor: themeColors.button }}
+            className="w-full text-white py-3 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-[0.985] flex items-center justify-center gap-2"
+            style={{
+              backgroundColor: '#BB5F36',
+              boxShadow: searchingVendors ? 'none' : '0 4px 14px rgba(187, 95, 54, 0.3)'
+            }}
           >
             {searchingVendors ? 'Searching for vendors...' :
               currentStep === 'payment' ? (totalAmount === 0 ? 'Confirm Booking (Free)' : (paymentMethod === 'online' ? 'Proceed to Pay' : 'Confirm Booking')) :
@@ -1573,26 +1548,26 @@ const Checkout = () => {
 
       {/* Contact Details Edit Modal */}
       {showContactModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="bg-white w-full max-w-sm rounded-2xl p-6 shadow-xl animate-scale-in">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Update Contact Details</h3>
-            <p className="text-sm text-gray-500 mb-4">These details will be used for this booking only.</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-[2px]">
+          <div className="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl border border-slate-150 animate-scale-in">
+            <h3 className="text-sm font-extrabold text-slate-900 uppercase tracking-wider mb-2">Update Contact</h3>
+            <p className="text-[11px] text-slate-450 font-semibold mb-4 leading-normal">These details will be used for this booking request only.</p>
 
             <div className="space-y-4">
               <div>
-                <label className="text-xs font-bold text-gray-500 uppercase">Name</label>
+                <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Name</label>
                 <input
                   type="text"
                   value={contactDetails.name}
                   onChange={(e) => setContactDetails(prev => ({ ...prev, name: e.target.value }))}
-                  className="w-full mt-1 p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full mt-1 px-3 py-2.5 bg-slate-50 rounded-xl border border-slate-200 focus:border-[#BB5F36] focus:ring-1 focus:ring-[#BB5F36]/20 text-xs font-semibold text-slate-900 outline-none transition-colors"
                   placeholder="Enter name"
                 />
               </div>
               <div>
-                <label className="text-xs font-bold text-gray-500 uppercase">Phone Number</label>
-                <div className="flex gap-2">
-                  <span className="p-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-500 font-medium select-none">+91</span>
+                <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Phone Number</label>
+                <div className="flex gap-2 mt-1">
+                  <span className="px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-400 font-bold text-xs select-none">+91</span>
                   <input
                     type="tel"
                     maxLength={10}
@@ -1601,16 +1576,16 @@ const Checkout = () => {
                       const val = e.target.value.replace(/\D/g, '');
                       setContactDetails(prev => ({ ...prev, phone: val }));
                     }}
-                    className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    className="w-full px-3 py-2.5 bg-slate-50 rounded-xl border border-slate-200 focus:border-[#BB5F36] focus:ring-1 focus:ring-[#BB5F36]/20 text-xs font-semibold text-slate-900 outline-none transition-colors"
                     placeholder="9999999999"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-2 gap-2.5 pt-2">
                 <button
                   onClick={() => setShowContactModal(false)}
-                  className="py-3 rounded-xl font-bold text-gray-500 hover:bg-gray-50 transition-colors"
+                  className="py-2.5 rounded-xl font-bold text-slate-500 hover:bg-slate-100 transition-colors text-xs uppercase tracking-wider"
                 >
                   Cancel
                 </button>
@@ -1626,10 +1601,13 @@ const Checkout = () => {
                     }
                     setShowContactModal(false);
                   }}
-                  className="py-3 rounded-xl font-bold text-white shadow-lg shadow-teal-500/30 active:scale-95 transition-all"
-                  style={{ backgroundColor: themeColors.button }}
+                  className="py-2.5 rounded-xl font-bold text-white shadow-sm text-xs uppercase tracking-wider transition-all"
+                  style={{
+                    backgroundColor: '#BB5F36',
+                    boxShadow: '0 2px 8px rgba(187, 95, 54, 0.2)'
+                  }}
                 >
-                  Save Changes
+                  Save
                 </button>
               </div>
             </div>

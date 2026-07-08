@@ -179,167 +179,168 @@ const CategoryModal = React.memo(({ isOpen, onClose, category, location, cartCou
             }}
           />
 
-          {/* Modal Container */}
-          <motion.div
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed bottom-0 left-0 right-0 z-[9999]"
-            style={{
-              position: 'fixed',
-              willChange: 'transform',
-              backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden',
-            }}
-          >
-            {/* Close Button */}
-            <div className="absolute -top-12 right-4 z-[60]">
-              <button
-                onClick={onClose}
-                className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-50 transition-colors"
-              >
-                <FiX className="w-6 h-6 text-gray-800" />
-              </button>
-            </div>
-
-            <div className="bg-white rounded-t-3xl max-h-[90vh] overflow-y-auto min-h-[50vh]">
-              {isRedirecting ? (
-                <div className="flex flex-col items-center justify-center min-h-[40vh] py-12">
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6"
-                  >
-                    <FiCheck className="w-10 h-10 text-green-500" />
-                  </motion.div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Service Added!</h3>
-                  <p className="text-gray-500 text-sm">Proceeding to checkout...</p>
-                </div>
-              ) : (
-                <div className="px-4 py-6">
-                  {/* Header */}
-                  <div className="flex items-center gap-3 mb-6">
-                    {view === 'services' && (
-                      <button
-                        onClick={handleBackToBrands}
-                        className="p-1 rounded-full hover:bg-gray-100"
-                      >
-                        <FiArrowLeft className="w-6 h-6 text-gray-800" />
-                      </button>
-                    )}
-                    <div>
-                      <h1 className="text-xl font-bold text-gray-900">
-                        {view === 'brands' ? (category?.title || 'Brands') : (selectedBrand?.title || 'Services')}
-                      </h1>
-                      {view === 'services' && <p className="text-xs text-gray-500">Select a service to add</p>}
-                    </div>
-                    {loading && <div className="w-5 h-5 border-2 border-primary-500 border-t-transparent rounded-full animate-spin ml-auto"></div>}
+            {/* Modal Container */}
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 300 }}
+              className="fixed bottom-0 left-0 right-0 z-[9999] max-w-lg mx-auto"
+              style={{
+                position: 'fixed',
+                willChange: 'transform',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+              }}
+            >
+              <div className="bg-white rounded-t-2xl max-h-[85vh] overflow-y-auto min-h-[40vh] border border-slate-100 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] flex flex-col">
+                {isRedirecting ? (
+                  <div className="flex flex-col items-center justify-center min-h-[35vh] py-10">
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center mb-4"
+                    >
+                      <FiCheck className="w-8 h-8 text-[#BB5F36]" />
+                    </motion.div>
+                    <h3 className="text-base font-extrabold text-slate-900 mb-1">Service Added!</h3>
+                    <p className="text-slate-555 text-xs font-semibold">Proceeding to checkout...</p>
                   </div>
-
-                  {/* Content */}
-                  {loading && (view === 'brands' ? brands.length === 0 : services.length === 0) ? (
-                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 animate-pulse">
-                      {[1, 2, 3, 4, 5, 6].map((i) => (
-                        <div key={i} className="flex flex-col items-center">
-                          <div className="w-20 h-20 bg-gray-200 rounded-2xl mb-2"></div>
-                          <div className="h-3 w-16 bg-gray-200 rounded"></div>
+                ) : (
+                  <div>
+                    {/* Compact Sticky Header */}
+                    <div className="p-3.5 px-4 border-b border-slate-100 flex justify-between items-center sticky top-0 bg-white/95 backdrop-blur-md z-10">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        {view === 'services' && (
+                          <button
+                            onClick={handleBackToBrands}
+                            className="w-7.5 h-7.5 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg flex items-center justify-center transition-colors"
+                          >
+                            <FiArrowLeft className="w-4 h-4" />
+                          </button>
+                        )}
+                        <div className="min-w-0">
+                          <h2 className="text-sm font-extrabold text-slate-900 truncate leading-snug">
+                            {view === 'brands' ? (category?.title || 'Brands') : (selectedBrand?.title || 'Services')}
+                          </h2>
+                          {view === 'services' && <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Select a service to add</p>}
                         </div>
-                      ))}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {loading && <div className="w-4 h-4 border-2 border-[#BB5F36] border-t-transparent rounded-full animate-spin"></div>}
+                        <button
+                          onClick={onClose}
+                          className="w-8 h-8 bg-slate-50 hover:bg-slate-100 text-slate-500 rounded-lg flex items-center justify-center transition-colors"
+                        >
+                          <FiX className="w-4.5 h-4.5" />
+                        </button>
+                      </div>
                     </div>
-                  ) : (
-                    <>
-                      {view === 'brands' ? (
-                        // Brands Grid
-                        brands.length > 0 ? (
-                          <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
-                            {brands.map((brand) => (
-                              <div
-                                key={brand.id || brand._id}
-                                onClick={() => handleBrandClick(brand)}
-                                className="flex flex-col items-center cursor-pointer group active:scale-95 transition-all"
-                              >
-                                <div className="w-20 h-20 bg-gray-50 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gray-100 transition-colors shadow-sm overflow-hidden border border-gray-100 relative">
-                                  {brand.icon ? (
-                                    <img
-                                      src={toAssetUrl(brand.icon)}
-                                      alt={brand.title}
-                                      className="w-14 h-14 object-contain group-hover:scale-110 transition-transform"
-                                      loading="lazy"
-                                    />
-                                  ) : (
-                                    <FiLayers className="w-8 h-8 text-gray-300" />
-                                  )}
-                                  {brand.badge && (
-                                    <span className="absolute top-0 right-0 bg-purple-100 text-purple-700 text-[9px] font-bold px-1.5 py-0.5 rounded-bl-lg">
-                                      {brand.badge}
-                                    </span>
-                                  )}
-                                </div>
-                                <p className="text-[11px] font-bold text-gray-800 text-center leading-tight line-clamp-2 px-1">
-                                  {brand.title}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="text-center py-12 text-gray-500">
-                            <p>No brands found in this category.</p>
-                          </div>
-                        )
-                      ) : (
-                        // Services List
-                        services.length > 0 ? (
-                          <div className="space-y-4">
-                            {services.map((svc) => (
-                              <div key={svc.id || svc._id} className="flex justify-between items-center p-3 border border-gray-100 rounded-xl hover:shadow-md transition-shadow">
-                                <div className="flex-1 pr-4">
-                                  <h3 className="font-black text-gray-900 text-[15px] leading-snug mb-0.5">{svc.title}</h3>
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-lg font-black text-emerald-600">₹{svc.discountPrice || svc.basePrice}</span>
-                                    {svc.discountPrice && svc.discountPrice < svc.basePrice && (
-                                      <span className="text-xs text-gray-400 line-through font-bold opacity-60">₹{svc.basePrice}</span>
-                                    )}
-                                  </div>
-                                </div>
-                                <button
-                                  onClick={() => handleServiceClick(svc)}
-                                  className="px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-bold flex items-center gap-1 hover:bg-green-100"
-                                >
-                                  <FiPlus /> Add
-                                </button>
-                              </div>
-                            ))}
-                            
-                            {/* Bottom Disclaimer */}
-                            <div className="mt-8 pt-4 border-t border-gray-50 flex items-start gap-3 bg-gray-50/50 p-4 rounded-2xl">
-                              <div className="mt-0.5 text-gray-400">
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                              </div>
-                              <p className="text-[11px] text-rose-500 font-normal italic leading-snug">
-                                * It is a base price only, additional charges may be applicable after service
-                              </p>
+
+                    {/* Content Body */}
+                    <div className="p-4">
+                      {loading && (view === 'brands' ? brands.length === 0 : services.length === 0) ? (
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 animate-pulse">
+                          {[1, 2, 3, 4, 5, 6].map((i) => (
+                            <div key={i} className="flex flex-col items-center">
+                              <div className="w-18 h-18 bg-slate-200 rounded-2xl mb-2"></div>
+                              <div className="h-3 w-14 bg-slate-200 rounded"></div>
                             </div>
-                          </div>
-                        ) : (
-                          <div className="text-center py-12 text-gray-500">
-                            <p>No services available for this brand yet.</p>
-                          </div>
-                        )
+                          ))}
+                        </div>
+                      ) : (
+                        <>
+                          {view === 'brands' ? (
+                            // Brands Grid
+                            brands.length > 0 ? (
+                              <div className="grid grid-cols-3 sm:grid-cols-4 gap-3.5">
+                                {brands.map((brand) => (
+                                  <div
+                                    key={brand.id || brand._id}
+                                    onClick={() => handleBrandClick(brand)}
+                                    className="flex flex-col items-center cursor-pointer group active:scale-95 transition-all"
+                                  >
+                                    <div className="w-18 h-18 bg-slate-50 rounded-2xl flex items-center justify-center mb-1.5 group-hover:bg-slate-100 transition-colors border border-slate-100 relative overflow-hidden">
+                                      {brand.icon ? (
+                                        <img
+                                          src={toAssetUrl(brand.icon)}
+                                          alt={brand.title}
+                                          className="w-12 h-12 object-contain group-hover:scale-105 transition-transform"
+                                          loading="lazy"
+                                        />
+                                      ) : (
+                                        <FiLayers className="w-6 h-6 text-slate-300" />
+                                      )}
+                                      {brand.badge && (
+                                        <span className="absolute top-0 right-0 bg-purple-50 text-purple-700 text-[8px] font-black px-1.5 py-0.5 rounded-bl-lg">
+                                          {brand.badge}
+                                        </span>
+                                      )}
+                                    </div>
+                                    <p className="text-[10px] font-bold text-slate-800 text-center leading-tight line-clamp-2 px-0.5">
+                                      {brand.title}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <div className="text-center py-12 text-slate-500">
+                                <p className="text-sm font-medium">No brands found in this category.</p>
+                              </div>
+                            )
+                          ) : (
+                            // Services List
+                            services.length > 0 ? (
+                              <div className="space-y-2.5">
+                                {services.map((svc) => (
+                                  <div key={svc.id || svc._id} className="flex justify-between items-center p-3 border border-slate-150 bg-white rounded-xl hover:shadow-[0_4px_12px_rgba(0,0,0,0.02)] transition-shadow">
+                                    <div className="flex-1 pr-4 min-w-0">
+                                      <h3 className="font-extrabold text-slate-900 text-xs leading-snug mb-1 truncate">{svc.title}</h3>
+                                      <div className="flex items-baseline gap-1.5">
+                                        <span className="text-sm font-black text-slate-900">₹{svc.discountPrice || svc.basePrice}</span>
+                                        {svc.discountPrice && svc.discountPrice < svc.basePrice && (
+                                          <span className="text-[10px] text-slate-400 line-through font-bold">₹{svc.basePrice}</span>
+                                        )}
+                                      </div>
+                                    </div>
+                                    <button
+                                      onClick={() => handleServiceClick(svc)}
+                                      className="px-3 py-1.5 bg-orange-50 hover:bg-orange-100 text-[#BB5F36] border border-orange-150/50 rounded-lg text-xs font-bold flex items-center gap-0.5 shrink-0 transition-colors"
+                                    >
+                                      <FiPlus className="w-3.5 h-3.5" />
+                                      <span>Add</span>
+                                    </button>
+                                  </div>
+                                ))}
+                                
+                                {/* Bottom Disclaimer */}
+                                <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-start gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                  <svg className="w-3.5 h-3.5 text-slate-450 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                                  <p className="text-[10px] text-slate-500 font-semibold italic leading-snug">
+                                    * It is a base price only, additional charges may be applicable after service
+                                  </p>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="text-center py-12 text-slate-500">
+                                <p className="text-sm font-medium">No services available for this brand yet.</p>
+                              </div>
+                            )
+                          )}
+                        </>
                       )}
-                    </>
-                  )}
-                </div>
-              )}
-            </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    );
 
   return createPortal(modalContent, document.body);
 });

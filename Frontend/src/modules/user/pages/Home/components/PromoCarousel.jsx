@@ -90,7 +90,7 @@ const PromoCarousel = memo(({ promos, onPromoClick }) => {
       <div
         ref={scrollContainerRef}
         onScroll={handleScroll}
-        className="flex gap-2 overflow-x-auto px-4 pb-2 scrollbar-hide snap-x snap-mandatory"
+        className="flex gap-4 overflow-x-auto px-3 pb-2 scrollbar-hide snap-x snap-mandatory"
         style={{ scrollBehavior: 'smooth' }}
       >
         {promotionalCards.map((promo, index) => (
@@ -107,7 +107,7 @@ const PromoCarousel = memo(({ promos, onPromoClick }) => {
         ))}
       </div>
       {/* Carousel indicator dots */}
-      <div className="flex justify-center gap-1.5 mt-3 mb-4">
+      <div className="flex justify-center gap-1.5 mt-2.5 mb-2">
         {promotionalCards.map((_, index) => (
           <div
             key={index}

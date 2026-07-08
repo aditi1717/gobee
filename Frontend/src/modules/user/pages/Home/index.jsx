@@ -469,12 +469,12 @@ const Home = () => {
             location={address}
             onLocationClick={handleLocationClick}
           />
-          <div className="px-5 pb-5 pt-1 max-w-lg lg:max-w-2xl mx-auto w-full">
+          <div className="px-5 pb-2.5 pt-0.5 max-w-lg lg:max-w-2xl mx-auto w-full">
             <SearchBar onInputClick={() => setIsSearchOpen(true)} />
           </div>
         </motion.div>
 
-        <main className="pt-6 space-y-8 pb-24 max-w-screen-xl mx-auto w-full">
+        <main className="pt-1.5 space-y-4 pb-1 max-w-screen-xl mx-auto w-full">
           {!isLocationSupported ? (
             <div className="flex flex-col items-center justify-center pt-20 pb-10 px-6 text-center min-h-[60vh]">
               <div className="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center mb-6">
@@ -502,7 +502,7 @@ const Home = () => {
             <>
               {/* Hero Section - Promo Carousel */}
               {homeContent?.isPromosVisible !== false && (
-                <motion.section variants={itemVariants} className="relative z-0">
+                <motion.section variants={itemVariants} className="relative z-0 my-4">
                   <PromoCarousel
                     promos={(homeContent?.promos || []).sort((a, b) => (a.order || 0) - (b.order || 0)).map(promo => ({
                       id: promo.id || promo._id,
@@ -604,15 +604,14 @@ const Home = () => {
                 <motion.div variants={itemVariants}>
                   <Suspense fallback={<div className="h-32 bg-gray-50 animate-pulse rounded-xl mx-4" />}>
                     <Banner
-                      imageUrl={homeContent?.banners?.[0] ? toAssetUrl(homeContent.banners[0].imageUrl) : null}
-                      onClick={() => {
-                        const b = homeContent?.banners?.[0];
+                      banners={homeContent?.banners}
+                      onBannerClick={(b) => {
                         if (b?.slug) {
                           navigate(`/user/${b.slug}`);
                           return;
                         }
                         if (b?.targetCategoryId) {
-                          const cat = categories.find(c => c.id === b.targetCategoryId);
+                          const cat = categories.find(c => (c.id === b.targetCategoryId || c._id === b.targetCategoryId));
                           if (cat) handleCategoryClick(cat);
                         }
                       }}
@@ -655,24 +654,6 @@ const Home = () => {
                   </Suspense>
                 </motion.div>
               ))}
-
-              {/* Dynamic Banner 2 */}
-              {homeContent?.isBannersVisible !== false && (
-                <motion.div variants={itemVariants}>
-                  <Suspense fallback={<div className="h-32 bg-gray-50 animate-pulse rounded-xl mx-4" />}>
-                    <Banner
-                      imageUrl={homeContent?.banners?.[1] ? toAssetUrl(homeContent.banners[1].imageUrl) : null}
-                      onClick={() => {
-                        const b = homeContent?.banners?.[1];
-                        if (b?.targetCategoryId) {
-                          const cat = categories.find(c => (c.id === b.targetCategoryId || c._id === b.targetCategoryId));
-                          if (cat) handleCategoryClick(cat);
-                        }
-                      }}
-                    />
-                  </Suspense>
-                </motion.div>
-              )}
 
               {/* Refer & Earn Section */}
               <motion.div variants={itemVariants}>

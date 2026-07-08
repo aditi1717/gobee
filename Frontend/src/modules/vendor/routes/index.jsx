@@ -61,7 +61,7 @@ const Notifications = lazyLoad(() => import('../pages/Notifications'));
 const SettlementRequest = lazyLoad(() => import('../pages/Wallet/SettlementRequest'));
 const SettlementHistory = lazyLoad(() => import('../pages/Wallet/SettlementHistory'));
 const MyRatings = lazyLoad(() => import('../pages/MyRatings'));
-const AboutHomestr = lazyLoad(() => import('../pages/AboutHomster'));
+const AboutGoBee = lazyLoad(() => import('../pages/AboutGoBee'));
 const BillingPage = lazyLoad(() => import('../pages/BillingPage'));
 
 // Loading fallback component
@@ -120,7 +120,7 @@ const VendorRoutes = () => {
               <Route path="/address-management" element={<ProtectedRoute userType="vendor"><AddressManagement /></ProtectedRoute>} />
               <Route path="/notifications" element={<ProtectedRoute userType="vendor"><Notifications /></ProtectedRoute>} />
               <Route path="/my-ratings" element={<ProtectedRoute userType="vendor"><MyRatings /></ProtectedRoute>} />
-              <Route path="/about-homestr" element={<ProtectedRoute userType="vendor"><AboutHomestr /></ProtectedRoute>} />
+              <Route path="/about-gobee" element={<ProtectedRoute userType="vendor"><AboutGoBee /></ProtectedRoute>} />
             </Routes>
           </PageTransition>
         </Suspense>

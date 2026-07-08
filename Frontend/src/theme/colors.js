@@ -9,7 +9,7 @@
  * - Worker module: import { workerTheme } from '../../../../theme'
  */
 
-// Homestr LOGO Core Brand Colors
+// Go Bee LOGO Core Brand Colors
 const brand = {
   teal: '#347989',
   yellow: '#D68F35',

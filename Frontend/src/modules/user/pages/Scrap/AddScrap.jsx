@@ -192,80 +192,60 @@ const AddScrap = () => {
   };
 
   return (
-    <div className="min-h-screen pb-20 relative bg-white">
-      {/* Refined Brand Mesh Gradient Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0"
-          style={{
-            background: `
-              radial-gradient(at 0% 0%, ${themeColors?.brand?.teal || '#347989'}25 0%, transparent 70%),
-              radial-gradient(at 100% 0%, ${themeColors?.brand?.yellow || '#D68F35'}20 0%, transparent 70%),
-              radial-gradient(at 100% 100%, ${themeColors?.brand?.orange || '#BB5F36'}15 0%, transparent 75%),
-              radial-gradient(at 0% 100%, ${themeColors?.brand?.teal || '#347989'}10 0%, transparent 70%),
-              radial-gradient(at 50% 50%, ${themeColors?.brand?.teal || '#347989'}03 0%, transparent 100%),
-              #FFFFFF
-            `
-          }}
-        />
-        {/* Elegant Dot Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `radial-gradient(${themeColors?.brand?.teal || '#347989'} 0.8px, transparent 0.8px)`,
-            backgroundSize: '32px 32px'
-          }}
-        />
-      </div>
-
+    <div className="min-h-screen pb-24 relative bg-[#F8FAFC]">
       <div className="relative z-10">
-        {/* Modern Glassmorphism Header */}
-        <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/40 border-b border-black/[0.03] px-4 py-4 flex items-center gap-3">
+        {/* Modern Grayscale Header */}
+        <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/70 border-b border-slate-100 px-4 py-3 flex items-center gap-3 shadow-sm">
           <button
+            type="button"
             onClick={() => navigate(-1)}
-            className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm border border-black/[0.02]"
+            className="w-9 h-9 bg-white rounded-xl flex items-center justify-center shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors"
           >
-            <FiArrowLeft className="w-5 h-5 text-gray-800" />
+            <FiArrowLeft className="w-4 h-4 text-slate-800" />
           </button>
-          <h1 className="text-xl font-extrabold text-gray-900">Add Scrap Item</h1>
+          <h1 className="text-lg font-bold text-slate-900 tracking-tight">Add Scrap Item</h1>
         </header>
 
-        <form onSubmit={handleCreate} className="p-4 space-y-4 pb-8">
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Item Title</label>
+        <form onSubmit={handleCreate} className="p-4 space-y-4 max-w-lg mx-auto pb-12">
+          {/* Item Title Input */}
+          <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-[0_4px_15px_-4px_rgba(0,0,0,0.01)]">
+            <label className="block text-xs font-black text-slate-800 uppercase tracking-wider mb-2">Item Title</label>
             <input
               type="text"
-              className="w-full p-3 bg-gray-50 rounded-xl border-none focus:ring-1 focus:ring-primary-500"
-              placeholder="e.g. Old LG Split AC, Samsung Fridge"
+              className="w-full px-3.5 py-3 bg-slate-50/50 rounded-xl border border-slate-200 focus:border-[#BB5F36] focus:ring-1 focus:ring-[#BB5F36]/20 text-sm font-semibold text-slate-900 placeholder:text-slate-400 transition-colors outline-none"
+              placeholder="e.g. Old LG Split AC, Copper Wires"
               value={formData.title}
               onChange={e => setFormData({ ...formData, title: e.target.value })}
               required
             />
           </div>
 
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+          {/* Description Input */}
+          <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-[0_4px_15px_-4px_rgba(0,0,0,0.01)]">
+            <label className="block text-xs font-black text-slate-800 uppercase tracking-wider mb-2">Description</label>
             <textarea
-              className="w-full p-3 bg-gray-50 rounded-xl border-none focus:ring-1 focus:ring-primary-500"
+              className="w-full px-3.5 py-3 bg-slate-50/50 rounded-xl border border-slate-200 focus:border-[#BB5F36] focus:ring-1 focus:ring-[#BB5F36]/20 text-sm font-semibold text-slate-900 placeholder:text-slate-400 transition-colors outline-none"
               rows="3"
-              placeholder="Condition, model year, etc."
+              placeholder="Condition of item, approximate weight, etc."
               value={formData.description}
               onChange={e => setFormData({ ...formData, description: e.target.value })}
             />
           </div>
 
           {/* Image Upload Selection */}
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-            <label className="block text-sm font-medium text-gray-700 mb-3">Item Images (Max 5)</label>
+          <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-[0_4px_15px_-4px_rgba(0,0,0,0.01)]">
+            <label className="block text-xs font-black text-slate-800 uppercase tracking-wider mb-3">Item Images (Max 5)</label>
             <div className="grid grid-cols-3 gap-3">
               {selectedFiles.map((item, index) => (
-                <div key={item.id || index} className="relative aspect-square rounded-xl overflow-hidden border border-gray-100 group">
+                <div key={item.id || index} className="relative aspect-square rounded-xl overflow-hidden border border-slate-150 group bg-slate-50">
                   <img src={item.preview} alt="Preview" className="w-full h-full object-cover" />
 
                   {/* Upload Progress Overlay */}
                   {item.status === 'uploading' && (
-                    <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-2">
-                      <div className="w-full bg-gray-200 rounded-full h-1.5 mb-1">
+                    <div className="absolute inset-0 bg-black/45 flex flex-col items-center justify-center p-2">
+                      <div className="w-full bg-slate-200 rounded-full h-1 mb-1">
                         <div
-                          className="bg-blue-500 h-1.5 rounded-full transition-all duration-300"
+                          className="bg-[#BB5F36] h-1 rounded-full transition-all duration-300"
                           style={{ width: `${item.progress}%` }}
                         ></div>
                       </div>
@@ -274,14 +254,14 @@ const AddScrap = () => {
                   )}
 
                   {item.status === 'done' && (
-                    <div className="absolute top-1 left-1 bg-green-500 text-white rounded-full p-0.5">
+                    <div className="absolute top-1 left-1 bg-teal-600 text-white rounded-full p-0.5 shadow-sm">
                       <FiCheckCircle size={10} />
                     </div>
                   )}
 
                   {item.status === 'error' && (
                     <div className="absolute inset-0 bg-red-500/20 flex items-center justify-center">
-                      <FiX className="text-red-500" />
+                      <FiX className="text-red-500 w-5 h-5" />
                     </div>
                   )}
 
@@ -289,19 +269,20 @@ const AddScrap = () => {
                     type="button"
                     onClick={() => removeImage(index)}
                     disabled={isUploading}
-                    className={`absolute top-1 right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center transition-opacity ${isUploading ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`}
+                    className="absolute top-1 right-1 w-5.5 h-5.5 bg-black/60 hover:bg-red-650 text-white rounded-full flex items-center justify-center transition-colors shadow-sm"
                   >
-                    <FiX size={14} />
+                    <FiX size={12} />
                   </button>
                 </div>
               ))}
+              
               {selectedFiles.length < 5 && !isUploading && (
                 <div
                   onClick={handlePhotoClick}
-                  className="aspect-square rounded-xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center gap-1 cursor-pointer hover:bg-gray-50 transition-colors"
+                  className="aspect-square rounded-xl border-2 border-dashed border-slate-200 hover:border-[#BB5F36] flex flex-col items-center justify-center gap-1 cursor-pointer hover:bg-slate-50/50 transition-colors"
                 >
-                  <FiCamera className="w-6 h-6 text-gray-400" />
-                  <span className="text-[10px] font-bold text-gray-500 uppercase">Add Photo</span>
+                  <FiCamera className="w-6 h-6 text-slate-400 group-hover:text-[#BB5F36]" />
+                  <span className="text-[9px] font-black text-slate-500 uppercase tracking-wide">Add Photo</span>
                   <input
                     id="add-scrap-photo-upload"
                     type="file"
@@ -317,33 +298,35 @@ const AddScrap = () => {
           </div>
 
           {/* Address Section */}
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+          <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-[0_4px_15px_-4px_rgba(0,0,0,0.01)]">
             <div className="flex justify-between items-center mb-3">
-              <h3 className="text-sm font-bold text-gray-800 flex items-center gap-2">
-                <FiMapPin className="text-primary-600" /> Pickup Location
+              <h3 className="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                <FiMapPin className="text-[#BB5F36]" /> Pickup Location
               </h3>
               <button
                 type="button"
                 onClick={() => setShowAddressModal(true)}
-                className="text-xs font-semibold text-primary-600 hover:text-primary-700"
-                style={{ color: themeColors.button }}
+                className="text-xs font-bold text-[#BB5F36] hover:text-[#a04e29] transition-colors"
               >
-                {formData.address.addressLine1 ? 'Change' : 'Select'}
+                {formData.address.addressLine1 ? 'Change Address' : 'Select Address'}
               </button>
             </div>
 
             {formData.address.addressLine1 ? (
-              <div className="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                <p className="font-medium text-gray-900 text-sm">{houseNumber ? `${houseNumber}, ` : ''}{formData.address.addressLine1.split(',')[0]}</p>
-                <p className="text-xs text-gray-500 mt-0.5 truncate">{formData.address.addressLine1}</p>
+              <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-100 flex items-start gap-2.5">
+                <FiMapPin className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
+                <div className="min-w-0">
+                  <p className="font-extrabold text-slate-900 text-sm">{houseNumber ? `${houseNumber}, ` : ''}{formData.address.addressLine1.split(',')[0]}</p>
+                  <p className="text-xs text-slate-500 mt-0.5 truncate">{formData.address.addressLine1}</p>
+                </div>
               </div>
             ) : (
               <button
                 type="button"
                 onClick={() => setShowAddressModal(true)}
-                className="w-full py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-500 text-sm font-medium hover:bg-gray-100 transition-colors"
+                className="w-full py-4 border-2 border-dashed border-slate-200 hover:border-[#BB5F36] rounded-xl text-slate-500 hover:text-[#BB5F36] text-xs font-bold uppercase tracking-wider hover:bg-slate-50/50 transition-all flex items-center justify-center gap-1.5"
               >
-                + Select Pickup Address
+                <span>+ Select Pickup Address</span>
               </button>
             )}
           </div>
@@ -352,16 +335,19 @@ const AddScrap = () => {
             <button
               type="submit"
               disabled={!formData.address.addressLine1 || isUploading}
-              className="w-full py-4 rounded-2xl text-white font-bold shadow-lg active:scale-95 transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-2"
-              style={{ backgroundColor: themeColors.button }}
+              className="w-full py-4 rounded-xl text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-2"
+              style={{
+                backgroundColor: '#BB5F36',
+                boxShadow: !formData.address.addressLine1 || isUploading ? 'none' : '0 4px 14px rgba(187, 95, 54, 0.3)'
+              }}
             >
               {isUploading ? (
                 <>
-                  <FiLoader className="animate-spin" />
+                  <FiLoader className="animate-spin w-4 h-4" />
                   <span>Listing Item...</span>
                 </>
               ) : (
-                'List Item for Pickup'
+                <span>List Item for Pickup</span>
               )}
             </button>
           </div>

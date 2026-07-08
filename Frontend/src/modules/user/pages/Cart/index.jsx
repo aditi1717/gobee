@@ -124,85 +124,53 @@ const Cart = () => {
     return sum + (unitOriginalPrice * (item.serviceCount || 1));
   }, 0);
   return (
-    <div className="min-h-screen pb-32 relative bg-white">
-      {/* Refined Brand Mesh Gradient Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0"
-          style={{
-            background: `
-              radial-gradient(at 0% 0%, ${themeColors?.brand?.teal || '#347989'}25 0%, transparent 70%),
-              radial-gradient(at 100% 0%, ${themeColors?.brand?.yellow || '#D68F35'}20 0%, transparent 70%),
-              radial-gradient(at 100% 100%, ${themeColors?.brand?.orange || '#BB5F36'}15 0%, transparent 75%),
-              radial-gradient(at 0% 100%, ${themeColors?.brand?.teal || '#347989'}10 0%, transparent 70%),
-              radial-gradient(at 50% 50%, ${themeColors?.brand?.teal || '#347989'}03 0%, transparent 100%),
-              #FFFFFF
-            `
-          }}
-        />
-        {/* Elegant Dot Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `radial-gradient(${themeColors?.brand?.teal || '#347989'} 0.8px, transparent 0.8px)`,
-            backgroundSize: '32px 32px'
-          }}
-        />
-      </div>
-
+    <div className="min-h-screen pb-32 relative bg-[#F8FAFC]">
       <div className="relative z-10">
-        {/* Modern Glassmorphism Header */}
-        <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/40 border-b border-black/[0.03] px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleBack}
-              className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm border border-black/[0.02]"
-            >
-              <FiArrowLeft className="w-5 h-5 text-black" />
-            </button>
-            <div className="flex items-center gap-2">
-              <FiShoppingCart className="w-5 h-5" style={{ color: themeColors.button }} />
-              <h1 className="text-xl font-extrabold text-black">Your Cart</h1>
-              {cartCount > 0 && (
-                <span className="bg-gray-100 text-gray-700 text-xs font-bold px-2 py-0.5 rounded-full">
-                  {cartCount}
-                </span>
-              )}
-            </div>
+        {/* Modern Grayscale Header */}
+        <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/70 border-b border-slate-100 px-4 py-3 flex items-center gap-3 shadow-sm">
+          <button
+            onClick={handleBack}
+            className="w-9 h-9 bg-white rounded-xl flex items-center justify-center shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors"
+          >
+            <FiArrowLeft className="w-4 h-4 text-slate-800" />
+          </button>
+          <div className="flex items-center gap-2">
+            <h1 className="text-lg font-bold text-slate-900 tracking-tight">Your Cart</h1>
+            {cartCount > 0 && (
+              <span className="bg-slate-100 text-slate-600 text-[10px] font-black px-2 py-0.5 rounded-full shrink-0">
+                {cartCount}
+              </span>
+            )}
           </div>
-          <NotificationBell />
         </header>
 
         {/* Cart Items - Grouped by Category */}
-        <main className="px-4 py-4" style={{ paddingBottom: cartItems.length > 0 ? '70px' : '100px' }}>
+        <main className="px-4 py-4 max-w-lg mx-auto" style={{ paddingBottom: cartItems.length > 0 ? '70px' : '100px' }}>
           {loading ? (
-            <div className="space-y-6">
+            <div className="space-y-4">
               {[1, 2].map(i => (
-                <div key={i} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 animate-pulse">
-                  {/* Category Header Skeleton */}
+                <div key={i} className="bg-white rounded-2xl border border-slate-150 p-4 animate-pulse">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-gray-200 rounded-xl"></div>
-                    <div className="space-y-2">
-                      <div className="h-4 w-32 bg-gray-200 rounded"></div>
-                      <div className="h-3 w-24 bg-gray-200 rounded"></div>
+                    <div className="w-12 h-12 bg-slate-200 rounded-xl"></div>
+                    <div className="space-y-2 flex-1">
+                      <div className="h-4 w-32 bg-slate-200 rounded"></div>
+                      <div className="h-3 w-20 bg-slate-200 rounded"></div>
                     </div>
                   </div>
-                  {/* Items Skeleton */}
                   <div className="space-y-3">
-                    <div className="h-10 w-full bg-gray-100 rounded"></div>
-                    <div className="h-10 w-full bg-gray-100 rounded"></div>
-                  </div>
-                  {/* Buttons Skeleton */}
-                  <div className="flex gap-2 mt-4">
-                    <div className="flex-1 h-10 bg-gray-200 rounded-xl"></div>
-                    <div className="flex-1 h-10 bg-gray-300 rounded-xl"></div>
+                    <div className="h-8 w-full bg-slate-100 rounded"></div>
+                    <div className="h-8 w-full bg-slate-100 rounded"></div>
                   </div>
                 </div>
               ))}
             </div>
           ) : cartItems.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-20">
-              <FiShoppingCart className="w-16 h-16 text-gray-300 mb-4" />
-              <p className="text-gray-500 text-lg font-medium">Your cart is empty</p>
-              <p className="text-gray-400 text-sm mt-2">Add services to get started</p>
+            <div className="flex flex-col items-center justify-center py-20 bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
+              <div className="bg-slate-50 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4 border border-slate-100">
+                <FiShoppingCart className="w-6 h-6 text-slate-300" />
+              </div>
+              <p className="text-slate-900 font-bold text-sm">Your cart is empty</p>
+              <p className="text-xs text-slate-400 mt-1">Add services to get started</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -214,27 +182,17 @@ const Cart = () => {
                 return (
                   <div
                     key={category}
-                    className="bg-white rounded-2xl shadow-md border border-gray-100"
-                    style={{
-                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)',
-                      padding: '16px'
-                    }}
+                    className="bg-white rounded-2xl border border-slate-100 border-l-4 !border-l-[#BB5F36] shadow-[0_4px_15px_-4px_rgba(0,0,0,0.02)] p-4"
                   >
                     {/* Category Header */}
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3 flex-1">
+                      <div className="flex items-center gap-3 flex-1 min-w-0">
                         {/* Category Icon */}
-                        <div
-                          className="w-16 h-16 rounded-xl flex items-center justify-center shrink-0 overflow-hidden"
-                          style={{
-                            backgroundColor: `${themeColors.brand.teal}15`,
-                            border: `2px solid ${themeColors.brand.teal}20`
-                          }}
-                        >
+                        <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center shrink-0 overflow-hidden">
                           <img
                             src={categoryIcon}
                             alt={category}
-                            className="w-12 h-12 object-contain"
+                            className="w-8 h-8 object-contain"
                             onError={(e) => {
                               e.target.style.display = 'none';
                               if (e.target.nextSibling) {
@@ -242,22 +200,15 @@ const Cart = () => {
                               }
                             }}
                           />
-                          <div
-                            className="hidden items-center justify-center"
-                            style={{
-                              width: '48px',
-                              height: '48px',
-                              display: 'none'
-                            }}
-                          >
-                            <FiShoppingCart className="w-8 h-8" style={{ color: themeColors.button }} />
+                          <div className="hidden items-center justify-center w-8 h-8 shrink-0">
+                            <FiShoppingCart className="w-5 h-5 text-[#347989]" />
                           </div>
                         </div>
 
                         {/* Category Info */}
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-base font-bold text-black mb-1">{category}</h3>
-                          <p className="text-sm text-gray-600">
+                          <h3 className="text-sm font-extrabold text-slate-900 truncate leading-snug">{category}</h3>
+                          <p className="text-xs text-slate-550 font-semibold mt-0.5">
                             {serviceCount} {serviceCount === 1 ? 'service' : 'services'} • ₹{categoryTotal.toLocaleString('en-IN')}
                           </p>
                         </div>
@@ -266,33 +217,56 @@ const Cart = () => {
                       {/* Delete Category Button */}
                       <button
                         onClick={() => handleDeleteCategory(category)}
-                        className="p-2 hover:bg-red-50 rounded-full transition-colors shrink-0"
+                        className="w-7 h-7 bg-red-50 hover:bg-red-100 text-red-650 rounded-lg flex items-center justify-center shrink-0 transition-colors"
+                        title="Remove Category Items"
                       >
-                        <FiTrash2 className="w-5 h-5 text-red-500" />
+                        <FiTrash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
 
                     {/* Services List */}
-                    <div className="mb-4 space-y-2">
+                    <div className="mb-4 divide-y divide-slate-100 border-y border-slate-100/60 py-1">
                       {items.map((item) => (
-                        <div key={item._id || item.id} className="flex items-start justify-between py-2 border-b border-gray-100 last:border-0">
-                          <div className="flex-1">
-                            <p className="text-sm text-gray-800 font-medium">
-                              {item.title} X {item.serviceCount || 1}
+                        <div key={item._id || item.id} className="flex items-center justify-between py-3 gap-3">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-extrabold text-slate-800 leading-snug truncate">
+                              {item.title}
                             </p>
                             {item.description && (
-                              <p className="text-xs text-gray-500 mt-0.5">{item.description}</p>
+                              <p className="text-[10px] text-slate-500 font-medium mt-0.5 truncate">{item.description}</p>
                             )}
                           </div>
-                          <div className="flex items-center gap-2 shrink-0">
-                            <span className="text-sm font-semibold text-black">
+
+                          <div className="flex items-center gap-3 shrink-0">
+                            {/* Quantity Controls */}
+                            <div className="flex items-center bg-slate-50 border border-slate-200 rounded-lg p-1 gap-1.5 shadow-sm">
+                              <button
+                                onClick={() => handleQuantityChange(item._id || item.id, -1)}
+                                className="w-5 h-5 bg-white hover:bg-slate-100 text-slate-500 rounded flex items-center justify-center transition-colors border border-slate-200/50"
+                              >
+                                <FiMinus className="w-2.5 h-2.5" />
+                              </button>
+                              <span className="text-[11px] font-black text-slate-900 min-w-[14px] text-center">
+                                {item.serviceCount || 1}
+                              </span>
+                              <button
+                                onClick={() => handleQuantityChange(item._id || item.id, 1)}
+                                className="w-5 h-5 bg-white hover:bg-slate-100 text-slate-500 rounded flex items-center justify-center transition-colors border border-slate-200/50"
+                              >
+                                <FiPlus className="w-2.5 h-2.5" />
+                              </button>
+                            </div>
+
+                            <span className="text-xs font-extrabold text-slate-900 min-w-[50px] text-right">
                               ₹{(item.price || 0).toLocaleString('en-IN')}
                             </span>
+
                             <button
                               onClick={() => handleDelete(item._id || item.id)}
-                              className="p-1 hover:bg-red-50 rounded transition-colors"
+                              className="w-6 h-6 bg-slate-50 hover:bg-red-50 text-slate-400 hover:text-red-650 rounded flex items-center justify-center transition-colors border border-slate-150"
+                              title="Delete Item"
                             >
-                              <FiTrash2 className="w-4 h-4 text-red-500" />
+                              <FiTrash2 className="w-3 h-3" />
                             </button>
                           </div>
                         </div>
@@ -303,24 +277,16 @@ const Cart = () => {
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleAddServices(category)}
-                        className="flex-1 px-4 py-2.5 bg-white border-2 border-gray-300 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all active:scale-95"
+                        className="flex-1 py-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors active:scale-[0.98]"
                       >
                         Add Services
                       </button>
                       <button
                         onClick={() => handleCategoryCheckout(category)}
-                        className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold text-white transition-all active:scale-95 shadow-md"
+                        className="flex-1 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-white shadow-sm hover:shadow transition-all active:scale-[0.98]"
                         style={{
-                          backgroundColor: themeColors.button,
-                          boxShadow: `0 2px 6px ${themeColors.brand.teal}4D`
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.backgroundColor = themeColors.brand.teal;
-                          e.target.style.boxShadow = `0 4px 12px ${themeColors.brand.teal}66`;
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.backgroundColor = themeColors.button;
-                          e.target.style.boxShadow = `0 2px 6px ${themeColors.brand.teal}4D`;
+                          backgroundColor: '#BB5F36',
+                          boxShadow: '0 2px 8px rgba(187, 95, 54, 0.2)'
                         }}
                       >
                         Book

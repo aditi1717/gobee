@@ -71,7 +71,7 @@ const Wallet = lazyLoad(() => import('../pages/Wallet'));
 const MyPlan = lazyLoad(() => import('../pages/MyPlan'));
 const PlanDetails = lazyLoad(() => import('../pages/MyPlan/PlanDetails'));
 const MyRating = lazyLoad(() => import('../pages/MyRating'));
-const AboutHomestr = lazyLoad(() => import('../pages/AboutHomster'));
+const AboutGoBee = lazyLoad(() => import('../pages/AboutGoBee'));
 const UpdateProfile = lazyLoad(() => import('../pages/UpdateProfile'));
 const Login = lazyLoad(() => import('../pages/login'));
 const Signup = lazyLoad(() => import('../pages/signup'));
@@ -113,7 +113,7 @@ const UserRoutes = () => {
   return (
     <ErrorBoundary>
       {/* Main content area - leaves space for bottom nav when needed */}
-      <div className={shouldShowBottomNav ? "pb-24" : ""}>
+      <div className={shouldShowBottomNav && !['/user', '/user/'].includes(location.pathname) ? "pb-24" : ""}>
         <Suspense fallback={<LoadingFallback />}>
           <PageTransition>
             <Routes>
@@ -140,7 +140,7 @@ const UserRoutes = () => {
               <Route path="/my-plan" element={<ProtectedRoute userType="user"><MyPlan /></ProtectedRoute>} />
               <Route path="/my-plan/:id" element={<ProtectedRoute userType="user"><PlanDetails /></ProtectedRoute>} />
               <Route path="/my-rating" element={<ProtectedRoute userType="user"><MyRating /></ProtectedRoute>} />
-              <Route path="/about-homestr" element={<ProtectedRoute userType="user"><AboutHomestr /></ProtectedRoute>} />
+              <Route path="/about-gobee" element={<ProtectedRoute userType="user"><AboutGoBee /></ProtectedRoute>} />
               <Route path="/update-profile" element={<ProtectedRoute userType="user"><UpdateProfile /></ProtectedRoute>} />
               <Route path="/scrap" element={<ProtectedRoute userType="user"><Scrap /></ProtectedRoute>} />
               <Route path="/scrap/add" element={<ProtectedRoute userType="user"><AddScrap /></ProtectedRoute>} />

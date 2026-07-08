@@ -44,8 +44,8 @@ const NotificationBell = ({ notificationCount = 0 }) => {
       ref={bellButtonRef}
       className="relative rounded-full cursor-pointer group active:scale-95 transition-transform duration-300 z-50 shrink-0"
       style={{
-        width: '42px',
-        height: '42px',
+        width: '28px',
+        height: '28px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -90,7 +90,7 @@ const NotificationBell = ({ notificationCount = 0 }) => {
     >
       {/* 1. Gradient Border */}
       <div
-        className="absolute inset-[-2px] rounded-full z-0"
+        className="absolute inset-[-1px] rounded-full z-0"
         style={{
           background: themeColors.brand.conic,
           boxShadow: `0 0 8px ${themeColors.brand.orange}26`
@@ -98,7 +98,7 @@ const NotificationBell = ({ notificationCount = 0 }) => {
       />
 
       {/* 2. White Mask */}
-      <div className="absolute inset-[1px] rounded-full bg-white z-0" />
+      <div className="absolute inset-[0.5px] rounded-full bg-white z-0" />
 
       {/* 3. Inner Button */}
       <button
@@ -113,7 +113,7 @@ const NotificationBell = ({ notificationCount = 0 }) => {
         }}
       >
         <svg width="0" height="0" className="absolute">
-          <linearGradient id="homestr-bell-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="gobee-bell-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor={themeColors.brand.teal} />
             <stop offset="50%" stopColor={themeColors.brand.yellow} />
             <stop offset="100%" stopColor={themeColors.brand.orange} />
@@ -122,9 +122,9 @@ const NotificationBell = ({ notificationCount = 0 }) => {
 
         <FiBell
           ref={bellRef}
-          className="w-5 h-5 transition-all duration-300"
+          className="w-3.5 h-3.5 transition-all duration-300"
           style={{
-            stroke: count > 0 ? '#EF4444' : 'url(#homestr-bell-gradient)',
+            stroke: count > 0 ? '#EF4444' : 'url(#gobee-bell-gradient)',
             strokeWidth: '2.5',
             color: 'transparent',
             filter: count > 0
@@ -137,12 +137,12 @@ const NotificationBell = ({ notificationCount = 0 }) => {
       {/* 4. Active Badge (Moved outside for robustness and to prevent clipping) */}
       {count > 0 && (
         <span
-          className="absolute -top-1.5 -right-1.5 bg-gradient-to-br from-red-500 to-red-600 text-white text-[10px] font-black rounded-full flex items-center justify-center z-20"
+          className="absolute -top-1 -right-1 bg-gradient-to-br from-red-500 to-red-600 text-white text-[7px] font-black rounded-full flex items-center justify-center z-20"
           style={{
-            minWidth: '20px',
-            height: '20px',
-            boxShadow: '0 3px 8px rgba(239, 68, 68, 0.5), 0 0 0 2px #fff',
-            border: '2px solid #fff'
+            minWidth: '12px',
+            height: '12px',
+            boxShadow: '0 1px 4px rgba(239, 68, 68, 0.4), 0 0 0 1px #fff',
+            border: '1px solid #fff'
           }}
         >
           {count > 9 ? '9+' : count}
